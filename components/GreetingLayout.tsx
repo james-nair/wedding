@@ -1,31 +1,43 @@
 import { styled } from "@mui/material";
 import { useRef } from "react";
-import { Config } from "../config/info";
 import { useConfig } from "../lib/useConfig";
 import useOnScreen from "../lib/useOnScreen";
 
-const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-const Layout = styled("div")({
+// const isPortrait =
+//   typeof window !== undefined &&
+//   window.matchMedia("(orientation: portrait)").matches;
+
+interface ComponentProps {
+  isPortrait?: boolean;
+}
+
+const Layout = styled("div", {
+  shouldForwardProp: (prop) => prop !== "isPortrait",
+})<ComponentProps>(({ isPortrait }) => ({
   width: "100%",
   padding: isPortrait ? "30% 0% 15% 5%" : "5% 0% 5% 10%",
-});
+}));
 
-const Title = styled("p")({
+const Title = styled("p", {
+  shouldForwardProp: (prop) => prop !== "isPortrait",
+})<ComponentProps>(({ isPortrait }) => ({
   color: "#795548",
   width: "100%",
   fontSize: isPortrait ? "2.5em" : "3.5em",
   margin: 0,
   fontWeight: "500",
-});
+}));
 
-const SubTitle = styled("p")({
+const SubTitle = styled("p", {
+  shouldForwardProp: (prop) => prop !== "isPortrait",
+})<ComponentProps>(({ isPortrait }) => ({
   color: "#795548",
   width: "100%",
   fontSize: isPortrait ? "1.2em" : "2em",
   margin: "24px 0",
   fontWeight: "300",
   lineHeight: 1.8,
-});
+}));
 
 export const GreetingLayout = () => {
   const ref = useRef<HTMLSelectElement>(null);
