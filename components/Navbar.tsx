@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { useAuth } from "../lib/UserAuth";
 
 const Navbar = () => {
-  const user = null;
-  const username = true;
+  const { user, username } = useAuth();
 
   return (
     <nav className="navbar">
