@@ -1,13 +1,21 @@
 import { createContext, ReactNode, useContext } from "react";
 import { StaticImageData } from "next/image";
 import TitleImage from "../assets/PAVAnh_Prewedding_C1_4V0A9188.jpg";
-
+import Image1 from "../assets/PAVAnh_Prewedding_C1_4V0A9076-L.jpg";
+import Image2 from "../assets/PAVAnh_Prewedding_C1_4V0A9117-L.jpg";
+import Image3 from "../assets/PAVAnh_Prewedding_C1_4V0A9107.jpg";
+import Image4 from "../assets/PAVAnh_Prewedding_C1_4V0A9128.jpg";
+import Image5 from "../assets/PAVAnh_Prewedding_C1_4V0A9332-L.jpg";
+import Image6 from "../assets/PAVAnh_Prewedding_C1_4V0A9021.jpg";
+import Image7 from "../assets/PAVAnh_Prewedding_C1_4V0A9472.jpg";
+import Image8 from "../assets/TitleImage.jpg";
 export type Config = {
   weddingDate: Date;
   location: string;
   groom: Person;
   bride: Person;
   titleImage: StaticImageData;
+  galleryImages: StaticImageData[];
 };
 
 export type Person = {
@@ -35,6 +43,16 @@ export const MyConfig: Config = {
     },
   },
   titleImage: TitleImage,
+  galleryImages: [
+    Image1,
+    Image2,
+    Image3,
+    Image4,
+    Image5,
+    Image6,
+    Image7,
+    Image8,
+  ],
 };
 
 const ConfigContext = createContext({} as Config);
