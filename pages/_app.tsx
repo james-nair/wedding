@@ -1,14 +1,17 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Navbar from "../components/Navbar";
 import { Toaster } from "react-hot-toast";
+import { ConfigWrapper } from "../lib/useConfig";
 import { UserAuth } from "../lib/UserAuth";
+import "../styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <UserAuth>
-      <Navbar />
-      <Component {...pageProps} />
+      {/* <Navbar /> */}
+      <ConfigWrapper>
+        <Component {...pageProps} />
+      </ConfigWrapper>
+
       <Toaster />
     </UserAuth>
   );

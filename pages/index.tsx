@@ -1,14 +1,11 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import Loader from "../components/Loader";
-import toast from "react-hot-toast";
+import { GreetingLayout } from "../components/GreetingLayout";
+import TitleLayout from "../components/TitleLayout";
 
 export default function Home() {
   return (
-    <div>
-      <button onClick={() => toast.success("hello toast!")}>Toast</button>
-    </div>
+    <main style={{ height: "100%" }}>
+      <TitleLayout />
+      <GreetingLayout />
+    </main>
   );
 }

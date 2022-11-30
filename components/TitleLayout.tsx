@@ -56,17 +56,32 @@ const Image = styled("img", {
 }));
 
 const Title = () => {
+  const isPortrait = useIsPortrait();
+  const config = useConfig();
   return (
-    <Section>
-      <Layout>
-        <SubtitleLayout>Invitation</SubtitleLayout>
-        <TitleLayout>Việt Anh &amp; Phương Anh</TitleLayout>
-        <SubtitleLayout>
-          08/01/2022
-          <br />
-          Nikko Hotel Saigon
+    <Section
+      sx={{
+        backgroundImage: `url(${config.titleImage.src})`,
+        backgroundSize: "cover",
+        // backgroundRepeat: "no-repeat",
+      }}
+    >
+      <Layout isPortrait={isPortrait}>
+        <SubtitleLayout isPortrait={isPortrait}>Invitation</SubtitleLayout>
+        <TitleLayout isPortrait={isPortrait}>
+          {config.groom.name} &amp; {config.bride.name}
+        </TitleLayout>
+        <SubtitleLayout isPortrait={isPortrait}>
+          <>
+            {config.weddingDate.toLocaleDateString()}
+            <br />
+            {config.location}
+          </>
         </SubtitleLayout>
       </Layout>
+      {/* <ImageLayout>
+        <Image src={config.titleImage.src} />
+      </ImageLayout> */}
     </Section>
   );
 };
