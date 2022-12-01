@@ -16,6 +16,9 @@ export type Config = {
   bride: Person;
   titleImage: StaticImageData;
   galleryImages: StaticImageData[];
+  church: Ceremony;
+  traditional: Ceremony;
+  reception: Ceremony;
 };
 
 export type Person = {
@@ -24,8 +27,15 @@ export type Person = {
   mother?: Person;
 };
 
+export type Ceremony = {
+  location: string;
+  address: string;
+  date: Date;
+  room?: string;
+};
+
 export const MyConfig: Config = {
-  weddingDate: new Date(2022, 0, 8),
+  weddingDate: new Date(2023, 0, 8),
   location: "Nikko Hotel Saigon",
   groom: {
     name: "Việt Anh",
@@ -53,6 +63,22 @@ export const MyConfig: Config = {
     Image7,
     Image8,
   ],
+  church: {
+    location: "Nhà thời Giáo Xứ Tân Phú",
+    date: new Date(2023, 0, 6, 16),
+    address: "Tân Phú, TPHCM",
+  },
+  traditional: {
+    location: "Tư Gia",
+    date: new Date(2023, 0, 8, 8, 30),
+    address: "TPHCM",
+  },
+  reception: {
+    location: "Nikko Hotel Saigon",
+    date: new Date(2023, 0, 8, 18, 0),
+    address: "235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Quận 11, TP.HCM",
+    room: "Sảnh Garden",
+  },
 };
 
 const ConfigContext = createContext({} as Config);
