@@ -27,7 +27,7 @@ const TitleLayout = styled("p", {
   shouldForwardProp: (prop) => prop !== "isPortrait",
 })<ComponentProps>(({ isPortrait }) => ({
   width: "100%",
-  fontSize: isPortrait ? "2.5em" : "3.5em",
+  fontSize: isPortrait ? "3.5em" : "5.5em",
   margin: 0,
   fontWeight: "500",
 }));
@@ -36,7 +36,7 @@ const SubtitleLayout = styled("p", {
   shouldForwardProp: (prop) => prop !== "isPortrait",
 })<ComponentProps>(({ isPortrait }) => ({
   width: "100%",
-  fontSize: isPortrait ? "1.2em" : "2em",
+  fontSize: isPortrait ? "2em" : "3.5em",
   margin: "24px 0",
   fontWeight: "300",
 }));
@@ -63,6 +63,8 @@ const Title = () => {
       sx={{
         backgroundImage: `url(${config.titleImage.src})`,
         backgroundSize: "cover",
+        backgroundPosition: "center center",
+
         // backgroundRepeat: "no-repeat",
       }}
     >
@@ -72,11 +74,7 @@ const Title = () => {
           {config.groom.name} &amp; {config.bride.name}
         </TitleLayout>
         <SubtitleLayout isPortrait={isPortrait}>
-          <>
-            {config.weddingDate.toLocaleDateString()}
-            <br />
-            {config.location}
-          </>
+          <>{config.weddingDate.toLocaleDateString()}</>
         </SubtitleLayout>
       </Layout>
       {/* <ImageLayout>
