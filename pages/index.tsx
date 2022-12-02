@@ -1,6 +1,7 @@
 import { Gallery } from "../components/Gallery";
 import { GreetingLayout } from "../components/GreetingLayout";
 import { Invite } from "../components/Invite";
+import { Timeline } from "../components/Timeline";
 import TitleLayout from "../components/TitleLayout";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       {/* <GreetingLayout /> */}
       <Gallery />
       <Invite name="James Nair" />
+      <Timeline />
     </main>
   );
 }
