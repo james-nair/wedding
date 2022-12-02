@@ -1,3 +1,4 @@
+import { Confirmation } from "../components/Confirmation";
 import { Gallery } from "../components/Gallery";
 import { GreetingLayout } from "../components/GreetingLayout";
 import { Invite } from "../components/Invite";
@@ -12,6 +13,7 @@ export default function Home() {
       <Gallery />
       <Invite name="James Nair" />
       <Timeline />
+      <Confirmation />
     </main>
   );
 }
