@@ -12,13 +12,12 @@ const Section = styled("section", {
   overflow: "hidden",
   position: "relative",
   backgroundColor: "#EFEBE9",
-  marginBottom: "1rem",
   textAlign: "center",
   padding: "1rem 0 3rem 0",
 });
 
 const Container = styled("div")({
-  maxWidth: "80%",
+  maxWidth: "70%",
   margin: "0 auto",
 });
 
@@ -134,7 +133,7 @@ const Date = ({
       }}
     >
       <Typography>
-        {time.toLocaleTimeString(undefined, { timeStyle: "short" })}
+        {time.toLocaleTimeString("en-AU", { timeStyle: "short" })}
       </Typography>
       <Typography
         sx={{

@@ -188,7 +188,7 @@ export const Invite = ({ name }: Props) => {
                       minimumIntegerDigits: 2,
                       useGrouping: false,
                     })} */}
-                    {reception.date.toLocaleDateString(undefined, {
+                    {reception.date.toLocaleDateString("en-AU", {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
@@ -200,7 +200,7 @@ export const Invite = ({ name }: Props) => {
                   isSmall={isSm}
                   color="#db9f05"
                   text={`Ceremony at ${reception.date.toLocaleTimeString(
-                    undefined,
+                    "en-AU",
                     { timeStyle: "short" }
                   )}`}
                 />
