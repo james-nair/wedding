@@ -76,8 +76,9 @@ export const MyConfig: Config = {
   reception: {
     location: "Nikko Hotel Saigon",
     date: new Date(2023, 0, 8, 18, 0),
-    address: "235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Quận 11, TP.HCM",
-    room: "Sảnh Garden",
+    address:
+      "235 Nguyen Van Cu Street, Nguyen Cu Trinh Ward, District 11, Ho Chi Minh City",
+    room: "Garden",
   },
 };
 

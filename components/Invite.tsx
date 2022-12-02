@@ -110,8 +110,10 @@ const TextWrapper = ({
   text,
   isPortrait,
   isSmall,
+  color,
 }: {
   text: string;
+  color?: string;
   isPortrait?: boolean;
   isSmall?: boolean;
 }) => {
@@ -120,6 +122,7 @@ const TextWrapper = ({
       style={{
         fontSize: isSmall ? "1em" : "2em",
         // marginBottom: "1.5rem",
+        color: color,
       }}
     >
       <p>{text}</p>
@@ -153,33 +156,27 @@ export const Invite = ({ name }: Props) => {
                 transition: "background 1s ease-in",
               }}
             >
-              Trân Trọng Kính Mời
-              <br />
+              {/* Dear
+              <br /> */}
               <span>{name}</span>
             </TitleLayout>
           </Header>
           <InnerBox>
             <UpperText>
-              <h3>tới dự hôn lễ</h3>
-              <h3>của chúng mình</h3>
+              <h3>With joyful hearts we invite you to </h3>
+              <h3>join us at our marriage ceremony and celebration </h3>
               <ThinLine />
 
               <InfoBox isSmall={isSm}>
-                <TextWrapper
-                  isSmall={isSm}
-                  text={`Vào lúc ${reception.date.getHours()}:${reception.date
-                    .getMinutes()
-                    .toLocaleString("en-AU", { minimumIntegerDigits: 2 })}`}
-                />
                 <div
                   style={{
-                    margin: "2rem 0",
-                    paddingBottom: "1.5rem",
-                    fontSize: isSm ? "2rem" : "5rem",
+                    margin: "1rem 0",
+                    // paddingBottom: "1.5rem",
+                    fontSize: isSm ? "1rem" : "2.5rem",
                   }}
                 >
                   <p style={{ color: "#db9f05" }}>
-                    {reception.date.getDate().toLocaleString("en-AU", {
+                    {/* {reception.date.getDate().toLocaleString("en-AU", {
                       minimumIntegerDigits: 2,
                     })}{" "}
                     .{" "}
@@ -190,9 +187,25 @@ export const Invite = ({ name }: Props) => {
                     {reception.date.getFullYear().toLocaleString("en-AU", {
                       minimumIntegerDigits: 2,
                       useGrouping: false,
+                    })} */}
+                    {reception.date.toLocaleDateString(undefined, {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
                     })}
                   </p>
                 </div>
+                <TextWrapper
+                  isSmall={isSm}
+                  color="#db9f05"
+                  text={`Ceremony at ${reception.date.toLocaleTimeString(
+                    undefined,
+                    { timeStyle: "short" }
+                  )}`}
+                />
+                <div style={{ paddingBottom: "1.5rem" }} />
+                <TextWrapper isSmall={isSm} text={reception.location} />
                 <TextWrapper isSmall={isSm} text={reception.room ?? ""} />
                 <p>{reception.address}</p>
               </InfoBox>
