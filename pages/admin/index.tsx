@@ -1,9 +1,17 @@
+import { AuthWrapper } from "../../components/AuthWrapper";
+import { useAuth } from "../../lib/UserAuth";
+
 type AdminPageProps = {};
 
 const AdminPage = (props: AdminPageProps) => {
+  const { username, user } = useAuth();
+
   return (
     <main>
-      <h1>Admin Page</h1>
+      <AuthWrapper>
+        Hello, my username is {username}
+        <div style={{ width: "100%" }}>{JSON.stringify(user)}</div>
+      </AuthWrapper>
     </main>
   );
 };
