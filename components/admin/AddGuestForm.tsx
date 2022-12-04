@@ -37,7 +37,7 @@ const UsernameMessage = ({
 };
 
 type Props = {
-  onCancel: () => void;
+  close: () => void;
 };
 export const AddGuestForm = (props: Props) => {
   const [loading, setLoading] = useState(false);
@@ -83,8 +83,7 @@ export const AddGuestForm = (props: Props) => {
         await setDoc(ref, data);
         toast.success("Guest added!");
         console.log("setting completed");
-      } else {
-        console.log("hit the else");
+        props.close();
       }
     } catch (error) {
       console.log("error", error);
@@ -177,7 +176,7 @@ export const AddGuestForm = (props: Props) => {
             <Button
               variant="outlined"
               sx={{ mr: "1rem" }}
-              onClick={props.onCancel}
+              onClick={props.close}
             >
               Cancel
             </Button>

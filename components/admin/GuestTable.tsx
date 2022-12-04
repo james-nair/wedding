@@ -61,7 +61,7 @@ export const GuestTable = (props: Props) => {
           </Table>
         </TableContainer>
         <ModalForm open={open} handleModalStatus={setOpen} title="Add Guest">
-          <AddGuestForm />
+          <AddGuestForm close={() => setOpen(false)} />
         </ModalForm>
       </div>
     );

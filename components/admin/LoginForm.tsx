@@ -63,6 +63,7 @@ export const LoginForm = () => {
           <Grid item xs={12}>
             <TextField
               required
+              type="password"
               label="Password"
               sx={{ width: "100%" }}
               value={password}

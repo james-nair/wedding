@@ -10,4 +10,14 @@ export class Guest {
   partyOf: number = 1;
   side: InvitedBy = "Bride";
   type: Category = "Others";
+
+  constructor(guest?: Guest) {
+    if (guest) {
+      this.name = guest.name;
+      this.url = guest.url;
+      this.partyOf = guest.partyOf;
+      this.side = guest.side;
+      this.type = guest.type;
+    }
+  }
 }

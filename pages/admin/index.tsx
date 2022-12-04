@@ -1,7 +1,17 @@
-import { styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
+import { signOut } from "firebase/auth";
+import {
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { GuestTable } from "../../components/admin/GuestTable";
 import { Guest } from "../../components/admin/types";
 import { AuthWrapper } from "../../components/AuthWrapper";
+import { auth, firestore } from "../../lib/firebase";
 import { useAuth } from "../../lib/UserAuth";
 
 interface ComponentProps {
@@ -31,10 +41,39 @@ type AdminPageProps = {};
 const AdminPage = (props: AdminPageProps) => {
   const { username, user } = useAuth();
 
+  const [guests, setGuests] = useState<Guest[]>([]);
+
+  useEffect(() => {
+    let unsub;
+    (async () => {
+      let guestsRef = collection(firestore, "guests");
+      unsub = onSnapshot(guestsRef, (doc) => {
+        let results: Guest[] = [];
+        doc.forEach((d) => {
+          console.log(d.id, " ==> ", d.data());
+          let g = new Guest(d.data() as Guest);
+          results.push(g);
+        });
+
+        setGuests(results);
+      });
+    })();
+
+    return unsub;
+  }, []);
+
   return (
     <main style={{ height: "100%" }}>
       <AuthWrapper>
         <Section>
+          <Button
+            variant="contained"
+            onClick={() => {
+              let res = signOut(auth);
+            }}
+          >
+            Log out
+          </Button>
           <Layout>
             <div
               style={{
@@ -44,9 +83,7 @@ const AdminPage = (props: AdminPageProps) => {
                 maxWidth: "70%",
               }}
             >
-              <GuestTable label={"Test"} guestList={[new Guest()]} />
-              {/* Hello, my username is {username}
-        <div style={{ width: "100%" }}>{JSON.stringify(user)}</div> */}
+              <GuestTable label={"Guest List"} guestList={guests} />
             </div>
           </Layout>
         </Section>
