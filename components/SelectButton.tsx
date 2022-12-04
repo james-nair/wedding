@@ -17,7 +17,6 @@ export const SelectButton = (props: Props) => {
         id={`select-${id}`}
         name="rsvp"
         value={"yes"}
-        required
         type="radio"
         style={{
           position: "absolute",

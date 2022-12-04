@@ -83,7 +83,16 @@ export const AddGuestForm = (props: Props) => {
         //set guests to db
         console.log("setting to db");
         const ref = doc(firestore, "guests", url);
-        const data = { name, url, partyOf: personNum, side, type };
+        const data = {
+          name,
+          url,
+          estimated: personNum,
+          partyOf: 0,
+          side,
+          type,
+          confirmed: false,
+          going: false,
+        };
         await setDoc(ref, data);
         toast.success("Guest added!");
         console.log("setting completed");
