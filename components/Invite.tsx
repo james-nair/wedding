@@ -1,7 +1,5 @@
 import { styled } from "@mui/material";
-import { borderRight } from "@mui/system";
 import { useRef } from "react";
-import { couldStartTrivia } from "typescript";
 import { useConfig } from "../lib/useConfig";
 import { useIsPortrait } from "../lib/useIsPortrait";
 import { useMediaQuery } from "../lib/useMediaQuery";
