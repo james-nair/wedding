@@ -208,8 +208,8 @@ export const Confirmation = (props: Props) => {
                       height: "3rem",
                     }}
                   >
-                    Aw &#128549; that's okay. Do let us know if you change your
-                    mind &#128523;
+                    Aw &#128549; that&apos;s okay. Do let us know if you change
+                    your mind &#128523;
                   </h3>
                 </Subtitle>
               </Grid>
