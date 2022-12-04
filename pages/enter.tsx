@@ -10,9 +10,8 @@ import {
 import { auth, firestore, googleAuthProvider } from "../lib/firebase";
 import { useAuth } from "../lib/UserAuth";
 import debounce from "lodash.debounce";
-type enterProps = {};
 
-const EnterPage = (props: enterProps) => {
+const EnterPage = () => {
   const { user, username } = useAuth();
   return (
     <main>

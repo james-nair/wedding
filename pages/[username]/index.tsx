@@ -1,11 +1,7 @@
 import { useRouter } from "next/dist/client/router";
-import Home from "..";
+import Home from "../index";
 
-type UserPageProps = {};
-
-const UserPage = (props: UserPageProps) => {
-  const router = useRouter();
-  const pathname = router.asPath;
+const UserPage = () => {
   return <Home />;
 };
 

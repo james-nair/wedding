@@ -1,12 +1,6 @@
 import { Button, styled } from "@mui/material";
 import { signOut } from "firebase/auth";
-import {
-  collection,
-  doc,
-  getDocs,
-  onSnapshot,
-  query,
-} from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { GuestTable } from "../../components/admin/GuestTable";
 import { Guest } from "../../components/admin/types";
