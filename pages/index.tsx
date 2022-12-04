@@ -9,14 +9,11 @@ import { Invite } from "../components/Invite";
 import { Timeline } from "../components/Timeline";
 import TitleLayout from "../components/TitleLayout";
 import { firestore } from "../lib/firebase";
-export default function Home() {
-  const router = useRouter();
-  const url = router.asPath.split("/")[1];
-  const ref = url !== "" ? doc(firestore, "guests", url) : undefined;
-  const [querySnapshot] = ref ? useDocument(ref) : [undefined];
 
-  const guest = querySnapshot && (querySnapshot.data() as Guest);
-
+type HomeProps = {
+  guest?: Guest;
+};
+export default function Home({ guest }: HomeProps) {
   return (
     <main style={{ height: "100%" }}>
       <TitleLayout />
