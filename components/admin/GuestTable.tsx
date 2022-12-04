@@ -55,8 +55,10 @@ export const GuestTable = (props: Props) => {
             <TableBody>
               {props.guestList.map((guest, i) => (
                 <TableRow key={`guest_${guest.url}`}>
-                  {Object.values(guest).map((value, i: number) => (
-                    <TableCell key={`value_${value}_i_${i}`}>{value}</TableCell>
+                  {Object.keys(guest).map((key, i: number) => (
+                    <TableCell key={`value_${key}_i_${i}`}>
+                      {guest[key as keyof Guest].toString()}
+                    </TableCell>
                   ))}
                   <TableCell>
                     <IconButton
