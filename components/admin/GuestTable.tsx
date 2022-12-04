@@ -2,6 +2,7 @@ import {
   Button,
   FormControl,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   Modal,
@@ -16,6 +17,7 @@ import {
   TableRow,
   TextField,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import { ModalForm } from "../ModalForm";
 import { AddGuestForm } from "./AddGuestForm";
@@ -27,6 +29,7 @@ type Props = {
 };
 export const GuestTable = (props: Props) => {
   const [open, setOpen] = useState(false);
+  const [editingGuest, setEditingGuest] = useState<Guest>();
   if (props.guestList.length > 0) {
     return (
       <div>
@@ -34,7 +37,10 @@ export const GuestTable = (props: Props) => {
         <Button
           variant="contained"
           sx={{ marginBottom: "1rem" }}
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            setEditingGuest(undefined);
+            setOpen(true);
+          }}
         >
           Add new guest
         </Button>
@@ -46,6 +52,7 @@ export const GuestTable = (props: Props) => {
                 {Object.keys(props.guestList[0]).map((field, i) => (
                   <TableCell key={`field_${field}_i_${i}`}>{field} </TableCell>
                 ))}
+                <TableCell /> {/** Extra cell for the edit button */}
               </TableRow>
             </TableHead>
 
@@ -55,13 +62,24 @@ export const GuestTable = (props: Props) => {
                   {Object.values(guest).map((value, i: number) => (
                     <TableCell key={`value_${value}_i_${i}`}>{value}</TableCell>
                   ))}
+                  <TableCell>
+                    <IconButton
+                      size="large"
+                      onClick={() => {
+                        setEditingGuest(guest);
+                        setOpen(true);
+                      }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
         <ModalForm open={open} handleModalStatus={setOpen} title="Add Guest">
-          <AddGuestForm close={() => setOpen(false)} />
+          <AddGuestForm close={() => setOpen(false)} guest={editingGuest} />
         </ModalForm>
       </div>
     );

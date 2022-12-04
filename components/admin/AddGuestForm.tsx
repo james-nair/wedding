@@ -38,23 +38,27 @@ const UsernameMessage = ({
 
 type Props = {
   close: () => void;
+  guest?: Guest; //editing if this is available
 };
 export const AddGuestForm = (props: Props) => {
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [url, setUrl] = useState(""); //make sure to check if this is available
-  const [isValid, setIsValid] = useState(false);
-  const [personNum, setPersonNum] = useState<number>();
-  const [side, setSide] = useState<InvitedBy>();
-  const [type, setType] = useState<Category>();
+  const [name, setName] = useState(props.guest?.name);
+  const [url, setUrl] = useState(props.guest?.url); //make sure to check if this is available
+  const [isValid, setIsValid] = useState(!!props.guest);
+  const [personNum, setPersonNum] = useState(props.guest?.partyOf);
+  const [side, setSide] = useState(props.guest?.side);
+  const [type, setType] = useState(props.guest?.type);
 
   useEffect(() => {
-    checkUrl(url);
+    //only check url if creating
+    if (!props.guest) {
+      checkUrl(url);
+    }
   }, [url]);
 
   const checkUrl = useCallback(
-    debounce(async (url: string) => {
-      if (url.length > 0) {
+    debounce(async (url?: string) => {
+      if (url && url.length > 0) {
         //check ref if url exists
         const ref = doc(firestore, `guests/${url}`);
         const snap = await getDoc(ref);
@@ -75,7 +79,7 @@ export const AddGuestForm = (props: Props) => {
     e.stopPropagation();
 
     try {
-      if (!!personNum && !!side && !!type) {
+      if (!!personNum && !!side && !!type && !!url) {
         //set guests to db
         console.log("setting to db");
         const ref = doc(firestore, "guests", url);
@@ -112,11 +116,15 @@ export const AddGuestForm = (props: Props) => {
               setUrl(e.currentTarget.value);
               setLoading(true);
             }}
+            disabled={!!props.guest}
           />
         </Grid>
-        <Grid item xs={12}>
-          <UsernameMessage username={url} isValid={isValid} />
-        </Grid>
+        {!props.guest && (
+          <Grid item xs={12}>
+            <UsernameMessage username={url ?? ""} isValid={isValid} />
+          </Grid>
+        )}
+
         <Grid item xs={4}>
           <TextField
             required
