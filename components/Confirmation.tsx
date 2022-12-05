@@ -15,6 +15,7 @@ import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { firestore } from "../lib/firebase";
 import { useMediaQuery } from "../lib/useMediaQuery";
+import { BACKGROUND_COLOR } from "../styles/constant";
 import { Guest } from "./admin/types";
 import { SelectButton } from "./SelectButton";
 
@@ -28,7 +29,7 @@ const Section = styled("section", {
   height: "fit-content",
   overflow: "hidden",
   position: "relative",
-  backgroundColor: "#EFEBE9",
+  backgroundColor: BACKGROUND_COLOR,
   transition: "background 1s ease-in",
 });
 
@@ -95,7 +96,7 @@ export const Confirmation = (props: Props) => {
     <form onSubmit={submit}>
       <Section>
         <FormBox>
-          <TitleLayout sx={{ backgroundColor: "#EFEBE9" }}>
+          <TitleLayout sx={{ backgroundColor: BACKGROUND_COLOR }}>
             <span>Will you make it?</span>
           </TitleLayout>
           <Subtitle>

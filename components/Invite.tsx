@@ -4,6 +4,7 @@ import { useConfig } from "../lib/useConfig";
 import { useIsPortrait } from "../lib/useIsPortrait";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import useOnScreen from "../lib/useOnScreen";
+import { BACKGROUND_COLOR } from "../styles/constant";
 
 interface ComponentProps {
   isPortrait?: boolean;
@@ -15,8 +16,7 @@ const Section = styled("section", {
   height: "fit-content",
   overflow: "hidden",
   position: "relative",
-  backgroundColor: "#EFEBE9",
-  transition: "background 1s ease-in",
+  backgroundColor: BACKGROUND_COLOR,
 });
 
 const Layout = styled("div")<ComponentProps>({
@@ -24,7 +24,7 @@ const Layout = styled("div")<ComponentProps>({
   color: "black",
   textAlign: "center",
   // marginTop: "3.5%",
-  animation: "fadein 2.5s",
+  // animation: "fadein 2.5s",
 });
 
 const GridLayout = styled("div")({
@@ -38,12 +38,12 @@ const GridLayout = styled("div")({
 });
 const InviteBox = styled("div", {
   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
-})<ComponentProps>({
+})<ComponentProps>(({ isSmall }) => ({
   marginLeft: "auto",
   marginRight: "auto",
   padding: "3rem 0",
-  maxWidth: "70%",
-});
+  maxWidth: isSmall ? "95%" : "80%",
+}));
 
 const Header = styled("div")({
   backgroundImage: `linear-gradient(#db9f05, #db9f05), linear-gradient(#db9f05, #db9f05)`,
@@ -142,16 +142,17 @@ export const Invite = ({ name }: Props) => {
     <Section ref={ref}>
       <Layout
         sx={{
-          backgroundColor: onScreen ? "#EFEBE9" : "#DADADA",
-          transition: "background 1s ease-in",
+          backgroundColor: BACKGROUND_COLOR,
+          // transition: "background 1s ease-in",
         }}
+        isSmall={isSm}
       >
         <InviteBox>
           <Header>
             <TitleLayout
               sx={{
-                backgroundColor: onScreen ? "#EFEBE9" : "#DADADA",
-                transition: "background 1s ease-in",
+                backgroundColor: BACKGROUND_COLOR,
+                // transition: "background 1s ease-in",
               }}
             >
               {/* Dear

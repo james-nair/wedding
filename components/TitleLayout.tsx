@@ -1,6 +1,7 @@
 import { styled } from "@mui/material";
 import { useConfig } from "../lib/useConfig";
 import { useIsPortrait } from "../lib/useIsPortrait";
+import { BACKGROUND_COLOR } from "../styles/constant";
 
 interface ComponentProps {
   isPortrait?: boolean;
@@ -10,7 +11,7 @@ const Section = styled("section", {
   shouldForwardProp: (prop) => prop !== "isPortrait",
 })<ComponentProps>({
   height: "100%",
-  background: "#DADADA",
+  // background: "#DADADA",
   overflow: "hidden",
   position: "relative",
 });
@@ -39,6 +40,7 @@ const SubtitleLayout = styled("p", {
   fontSize: isPortrait ? "2em" : "3.5em",
   margin: "24px 0",
   fontWeight: "300",
+  color: BACKGROUND_COLOR,
 }));
 
 const ImageLayout = styled("div")<ComponentProps>({
