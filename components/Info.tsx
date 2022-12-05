@@ -47,8 +47,7 @@ export const Info = (props: Props) => {
         <img
           src={props.person.image?.src}
           style={{
-            width: "100%",
-
+            width: "70%",
             objectFit: "contain",
             borderRadius: "50%",
           }}

@@ -33,9 +33,9 @@ export const CustomTimeline = (props: Props) => {
       {props.items.map((item, i) => (
         <TimelineItem key={`timeline_${item.title}_${i}`}>
           <TimelineOppositeContent
-            sx={{ m: isSm ? "auto 0 0" : "auto 0" }}
+            sx={{ m: "auto 0 0" }}
             {...(isEven(i) && { align: "right" })}
-            variant="body2"
+            variant="body1"
 
             // sx={{ display: "flex", alignItems: "flex-end" }}
           >
@@ -43,12 +43,12 @@ export const CustomTimeline = (props: Props) => {
             {item.time.toLocaleDateString("en-AU")}
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineConnector />
+            <TimelineConnector sx={{ height: "5rem" }} />
             <TimelineDot>{item.icon}</TimelineDot>
           </TimelineSeparator>
-          <TimelineContent sx={{ m: isSm ? "auto 0 0" : "auto 0" }}>
+          <TimelineContent sx={{ m: "auto 0 0" }}>
             <Typography variant={isSm ? "h6" : "h5"} component="span">
-              {item.title}
+              <b>{item.title}</b>
             </Typography>
             {item.subTitle && <Typography>{item.subTitle}</Typography>}
           </TimelineContent>

@@ -48,7 +48,7 @@ const FormBox = styled("div", {
 })<ComponentProps>(({ isSmall }) => ({
   marginLeft: "auto",
   marginRight: "auto",
-  // padding: "3rem 0",
+  padding: "1rem 0",
   paddingBottom: "3rem",
   maxWidth: isSmall ? "95%" : "80%",
   textAlign: "center",

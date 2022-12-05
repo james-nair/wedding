@@ -49,5 +49,5 @@ export const TitleLayout = styled("span", {
   margin: "auto",
   maxWidth: isSmall ? "95%" : "80%",
   display: "inline-block",
-  fontSize: "2.5rem",
+  fontSize: "4rem",
 }));
