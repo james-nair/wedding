@@ -1,6 +1,11 @@
 import { Box, Grid, styled, Typography } from "@mui/material";
 import { useConfig } from "../lib/useConfig";
-
+import { BACKGROUND_COLOR } from "../styles/constant";
+import { CustomTimeline, TimelineItem } from "./CustomTimeline";
+import { DoubleHappyIcon } from "./icons/DoubleHappy";
+import { RingsIcon } from "./icons/Rings";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import { useMediaQuery } from "../lib/useMediaQuery";
 interface ComponentProps {
   isPortrait?: boolean;
   isSmall?: boolean;
@@ -11,15 +16,17 @@ const Section = styled("section", {
   height: "fit-content",
   overflow: "hidden",
   position: "relative",
-  backgroundColor: "#EFEBE9",
+  backgroundColor: BACKGROUND_COLOR,
   textAlign: "center",
   padding: "1rem 0 3rem 0",
 });
 
-const Container = styled("div")({
-  maxWidth: "70%",
+const Container = styled("div", {
+  shouldForwardProp: (prop) => prop !== "isSmall" && prop !== "isPortrait",
+})<ComponentProps>(({ isSmall }) => ({
+  maxWidth: isSmall ? "95%" : "80%",
   margin: "0 auto",
-});
+}));
 
 const TitleLayout = styled("span", {
   shouldForwardProp: (prop) => prop !== "isPortrait",
@@ -166,11 +173,33 @@ const EventName = ({ name }: { name: string }) => {
 
 export const Timeline = () => {
   const config = useConfig();
+  const isSmall = useMediaQuery("md");
+  const items: TimelineItem[] = [
+    {
+      title: "Traditional Ceremonies",
+      time: config.traditional.date,
+      icon: <DoubleHappyIcon />,
+      // subTitle: "Because you need rest",
+    },
+    {
+      title: "Welcome Guests",
+      time: config.reception.date,
+      icon: <RingsIcon />,
+      // subTitle: "Because you need rest",
+    },
+    {
+      title: "Reception",
+      time: config.reception.date,
+      icon: <RestaurantIcon sx={{ color: "black" }} />,
+      subTitle: "Ceremony and dinner",
+    },
+  ];
   return (
     <Section>
-      <Container>
+      <Container isSmall={isSmall}>
         <TitleLayout>Timeline</TitleLayout>
-        <Grid container spacing={1}>
+        <CustomTimeline items={items} />
+        {/* <Grid container spacing={1}>
           <EventItem
             eventName="Traditional Ceremony"
             time={config.traditional.date}
@@ -185,7 +214,7 @@ export const Timeline = () => {
             time={config.reception.date}
             right
           />
-        </Grid>
+        </Grid> */}
       </Container>
     </Section>
   );
