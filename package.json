@@ -11,9 +11,13 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fontsource/alex-brush": "^4.5.9",
+    "@fontsource/elsie": "^4.5.7",
+    "@fontsource/playfair-display": "^4.5.12",
     "@mui/icons-material": "^5.10.16",
     "@mui/lab": "^5.0.0-alpha.110",
     "@mui/material": "^5.10.16",
+    "@next/font": "^13.0.6",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
