@@ -9,6 +9,8 @@ import Image5 from "../assets/PAVAnh_Prewedding_C1_4V0A9332-L.jpg";
 import Image6 from "../assets/PAVAnh_Prewedding_C1_4V0A9021.jpg";
 import Image7 from "../assets/PAVAnh_Prewedding_C1_4V0A9472.jpg";
 import Image8 from "../assets/TitleImage.jpg";
+import Bride from "../assets/PA_Avatar.jpg";
+import Groom from "../assets/Nair_Avatar.jpg";
 export type Config = {
   weddingDate: Date;
   location: string;
@@ -23,6 +25,7 @@ export type Config = {
 
 export type Person = {
   name: string;
+  image?: StaticImageData;
   father?: Person;
   mother?: Person;
 };
@@ -39,12 +42,14 @@ export const MyConfig: Config = {
   location: "Nikko Hotel Saigon",
   groom: {
     name: "Việt Anh",
+    image: Groom,
     mother: {
       name: "Kim Ngân",
     },
   },
   bride: {
     name: "Phương Anh",
+    image: Bride,
     mother: {
       name: "Vũ Thị Hương",
     },

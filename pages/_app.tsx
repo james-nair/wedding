@@ -1,18 +1,27 @@
+import { createTheme, ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
 import { ConfigWrapper } from "../lib/useConfig";
 import { UserAuth } from "../lib/UserAuth";
 import "../styles/globals.css";
 
+const theme = createTheme({
+  typography: {
+    fontFamily: "Playfair Display, serif",
+  },
+});
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <UserAuth>
-      {/* <Navbar /> */}
-      <ConfigWrapper>
-        <Component {...pageProps} />
-      </ConfigWrapper>
+    <ThemeProvider theme={theme}>
+      <UserAuth>
+        {/* <Navbar /> */}
+        <ConfigWrapper>
+          <Component {...pageProps} />
+        </ConfigWrapper>
 
-      <Toaster />
-    </UserAuth>
+        <Toaster />
+      </UserAuth>
+    </ThemeProvider>
   );
 }

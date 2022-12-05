@@ -1,6 +1,6 @@
 import { Box, Grid, styled, Typography } from "@mui/material";
 import { useConfig } from "../lib/useConfig";
-import { BACKGROUND_COLOR } from "../styles/constant";
+import { BACKGROUND_COLOR, CursiveFont, TitleLayout } from "../styles/constant";
 import { CustomTimeline, TimelineItem } from "./CustomTimeline";
 import { DoubleHappyIcon } from "./icons/DoubleHappy";
 import { RingsIcon } from "./icons/Rings";
@@ -28,15 +28,15 @@ const Container = styled("div", {
   margin: "0 auto",
 }));
 
-const TitleLayout = styled("span", {
-  shouldForwardProp: (prop) => prop !== "isPortrait",
-})<ComponentProps>(({ isPortrait }) => ({
-  padding: `0 1rem`,
-  margin: "auto",
-  maxWidth: "70%",
-  display: "inline-block",
-  fontSize: "2.5rem",
-}));
+// const TitleLayout = styled("span", {
+//   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
+// })<ComponentProps>(({ isPortrait, isSmall }) => ({
+//   padding: `0 1rem`,
+//   margin: "auto",
+//   maxWidth: isSmall ? "95%" : "80%",
+//   display: "inline-block",
+//   fontSize: "2.5rem",
+// }));
 
 const EventLine = styled("div")({
   height: "3rem",
@@ -197,7 +197,7 @@ export const Timeline = () => {
   return (
     <Section>
       <Container isSmall={isSmall}>
-        <TitleLayout>Timeline</TitleLayout>
+        <TitleLayout className={CursiveFont.className}>Timeline</TitleLayout>
         <CustomTimeline items={items} />
         {/* <Grid container spacing={1}>
           <EventItem

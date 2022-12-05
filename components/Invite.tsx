@@ -46,7 +46,7 @@ const InviteBox = styled("div", {
 }));
 
 const Header = styled("div")({
-  backgroundImage: `linear-gradient(#db9f05, #db9f05), linear-gradient(#db9f05, #db9f05)`,
+  backgroundImage: `linear-gradient(black, black), linear-gradient(black, black)`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "1px 50%, 1px 50%",
   backgroundPosition: "left bottom, right bottom",
@@ -56,7 +56,7 @@ const Header = styled("div")({
   "&::before": {
     position: "absolute",
     height: "1px",
-    backgroundColor: "#db9f05",
+    backgroundColor: "black",
     content: `""`,
     top: "50%",
     left: 0,
@@ -76,9 +76,9 @@ const TitleLayout = styled("span", {
 
 const InnerBox = styled("div")({
   paddingTop: "2rem",
-  borderLeft: "1px solid #db9f05",
-  borderRight: "1px solid #db9f05",
-  borderBottom: "1px solid #db9f05",
+  borderLeft: "1px solid black",
+  borderRight: "1px solid black",
+  borderBottom: "1px solid black",
 });
 
 const UpperText = styled("div")({
@@ -89,16 +89,16 @@ const UpperText = styled("div")({
 });
 
 const ThinLine = styled("div")({
-  height: "0.1rem",
+  height: "1px",
   width: "50%",
-  backgroundColor: "#db9f05",
+  backgroundColor: "black",
   margin: "1rem auto",
 });
 
 const InfoBox = styled("div", {
   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
 })<ComponentProps>(({ isPortrait, isSmall }) => ({
-  border: "1px solid #db9f05",
+  border: "1px solid black",
   borderLeft: 0,
   borderRight: 0,
   padding: isSmall ? "1rem 1.5rem" : "2.5rem 3rem",
@@ -145,9 +145,8 @@ export const Invite = ({ name }: Props) => {
           backgroundColor: BACKGROUND_COLOR,
           // transition: "background 1s ease-in",
         }}
-        isSmall={isSm}
       >
-        <InviteBox>
+        <InviteBox isSmall={isSm}>
           <Header>
             <TitleLayout
               sx={{
@@ -174,7 +173,7 @@ export const Invite = ({ name }: Props) => {
                     fontSize: isSm ? "1rem" : "2.5rem",
                   }}
                 >
-                  <p style={{ color: "#db9f05" }}>
+                  <p style={{ color: "black" }}>
                     {/* {reception.date.getDate().toLocaleString("en-AU", {
                       minimumIntegerDigits: 2,
                     })}{" "}
@@ -197,7 +196,7 @@ export const Invite = ({ name }: Props) => {
                 </div>
                 <TextWrapper
                   isSmall={isSm}
-                  color="#db9f05"
+                  color="black"
                   text={`Ceremony at ${reception.date.toLocaleTimeString(
                     "en-AU",
                     { timeStyle: "short" }

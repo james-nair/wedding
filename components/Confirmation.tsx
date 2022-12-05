@@ -35,23 +35,24 @@ const Section = styled("section", {
 
 const TitleLayout = styled("span", {
   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
-})<ComponentProps>(({ isPortrait }) => ({
+})<ComponentProps>(({ isSmall }) => ({
   padding: `0 1rem`,
   margin: "auto",
-  maxWidth: "70%",
+  maxWidth: isSmall ? "95%" : "80%",
   display: "inline-block",
   fontSize: "2.5rem",
 }));
 
 const FormBox = styled("div", {
   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
-})<ComponentProps>({
+})<ComponentProps>(({ isSmall }) => ({
   marginLeft: "auto",
   marginRight: "auto",
-  padding: "3rem 0",
-  maxWidth: "70%",
+  // padding: "3rem 0",
+  paddingBottom: "3rem",
+  maxWidth: isSmall ? "95%" : "80%",
   textAlign: "center",
-});
+}));
 
 const Subtitle = styled("div")({
   maxWidth: "85%",
@@ -95,8 +96,11 @@ export const Confirmation = (props: Props) => {
   return (
     <form onSubmit={submit}>
       <Section>
-        <FormBox>
-          <TitleLayout sx={{ backgroundColor: BACKGROUND_COLOR }}>
+        <FormBox isSmall={isSm}>
+          <TitleLayout
+            sx={{ backgroundColor: BACKGROUND_COLOR }}
+            isSmall={isSm}
+          >
             <span>Will you make it?</span>
           </TitleLayout>
           <Subtitle>

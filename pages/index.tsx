@@ -2,6 +2,7 @@ import { doc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
+import { AboutUs } from "../components/AboutUs";
 import { Guest } from "../components/admin/types";
 import { Confirmation } from "../components/Confirmation";
 import { Gallery } from "../components/Gallery";
@@ -21,6 +22,7 @@ export default function Home({ guest }: HomeProps) {
       <Gallery />
       <Invite name={guest?.name ?? ""} />
       <Timeline />
+      <AboutUs />
       <Confirmation guest={guest} />
     </main>
   );

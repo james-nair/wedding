@@ -1,6 +1,7 @@
 import { styled } from "@mui/material";
 import { useConfig } from "../lib/useConfig";
 import { useIsPortrait } from "../lib/useIsPortrait";
+import { useMediaQuery } from "../lib/useMediaQuery";
 import { BACKGROUND_COLOR } from "../styles/constant";
 
 interface ComponentProps {
@@ -59,6 +60,7 @@ const Image = styled("img", {
 
 const Title = () => {
   const isPortrait = useIsPortrait();
+  const isSmall = useMediaQuery("md");
   const config = useConfig();
   return (
     <Section
@@ -73,7 +75,16 @@ const Title = () => {
       <Layout isPortrait={isPortrait}>
         <SubtitleLayout isPortrait={isPortrait}>Invitation</SubtitleLayout>
         <TitleLayout isPortrait={isPortrait}>
-          {config.groom.name} &amp; {config.bride.name}
+          {isSmall ? (
+            <>
+              {config.groom.name} <br /> &amp; <br />
+              {config.bride.name}
+            </>
+          ) : (
+            <>
+              {config.groom.name} &amp; {config.bride.name}
+            </>
+          )}
         </TitleLayout>
         <SubtitleLayout isPortrait={isPortrait}>
           <>{config.weddingDate.toLocaleDateString()}</>
