@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 
 import { Alex_Brush, Elsie } from "@next/font/google";
 
@@ -10,6 +10,7 @@ export const CursiveFont = Alex_Brush({
 export const TextFont = Elsie({ subsets: ["latin"], weight: ["400", "900"] });
 //original is #EFEBE9
 export const BACKGROUND_COLOR = "#fcfaf5";
+export const FADED_BACKGROUND = BACKGROUND_COLOR + "ba";
 export const FADE_FROM = "#DADADA";
 export const HEADER_COLOR = "#3E3E3E";
 export const BACKGROUND_TRANSITION = "background 1s ease-in";
@@ -42,12 +43,12 @@ export const Header = ({ title }: { title: string }) => {
   );
 };
 
-export const TitleLayout = styled("span", {
+export const TitleLayout = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
 })<ComponentProps>(({ isPortrait, isSmall }) => ({
-  padding: `0 1rem`,
+  padding: `1rem 1rem 0`,
   margin: "auto",
+  marginTop: "1rem",
   maxWidth: isSmall ? "95%" : "80%",
   display: "inline-block",
-  fontSize: "4rem",
 }));

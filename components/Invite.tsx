@@ -4,14 +4,12 @@ import { useConfig } from "../lib/useConfig";
 import { useIsPortrait } from "../lib/useIsPortrait";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import useOnScreen from "../lib/useOnScreen";
-import { BACKGROUND_COLOR } from "../styles/constant";
+import { BACKGROUND_COLOR, FADED_BACKGROUND } from "../styles/constant";
 import BackgroundImage from "../assets/BackgroundMulti.jpg";
 interface ComponentProps {
   isPortrait?: boolean;
   isSmall?: boolean;
 }
-
-const FADED_BACKGROUND = BACKGROUND_COLOR + "ba";
 
 const Section = styled("section", {
   shouldForwardProp: (prop) => prop !== "isPortrait",
@@ -126,7 +124,7 @@ const InfoBox = styled("div", {
   borderRight: 0,
   // padding: isSmall ? "0.5rem 1rem" : "1.5rem 2rem",
   width: isSmall ? "90%" : "70%",
-  height: "60vh",
+  height: "100%",
   margin: "0 auto",
 }));
 
