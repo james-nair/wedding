@@ -5,6 +5,7 @@ type Props = {
   onClick: (id: string) => void;
   children: string;
   id?: string;
+  hasBorder?: boolean;
 };
 
 export const SelectButton = (props: Props) => {
@@ -28,10 +29,11 @@ export const SelectButton = (props: Props) => {
       <label
         style={{
           padding: "1rem 2rem",
-          border: "1px solid #db9f05",
+          ...(props.hasBorder && { border: "1px solid #121212" }),
+
           ...(props.selectedId === id && {
             color: "white",
-            backgroundColor: "#db9f05",
+            backgroundColor: "#121212",
           }),
           cursor: "pointer",
         }}

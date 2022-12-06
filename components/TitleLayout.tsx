@@ -3,9 +3,15 @@ import { useConfig } from "../lib/useConfig";
 import { useIsPortrait } from "../lib/useIsPortrait";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import { BACKGROUND_COLOR } from "../styles/constant";
+import { Love_Light } from "@next/font/google";
 
+const font = Love_Light({
+  weight: "400",
+  subsets: ["latin", "vietnamese"],
+});
 interface ComponentProps {
   isPortrait?: boolean;
+  isSmall?: boolean;
 }
 // const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 const Section = styled("section", {
@@ -26,12 +32,11 @@ const Layout = styled("div")<ComponentProps>({
 });
 
 const TitleLayout = styled("p", {
-  shouldForwardProp: (prop) => prop !== "isPortrait",
-})<ComponentProps>(({ isPortrait }) => ({
+  shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
+})<ComponentProps>(({ isPortrait, isSmall }) => ({
   width: "100%",
-  fontSize: isPortrait ? "3.5em" : "5.5em",
+  fontSize: isSmall ? "4em" : "5.5em",
   margin: 0,
-  fontWeight: "500",
 }));
 
 const SubtitleLayout = styled("p", {
@@ -74,7 +79,7 @@ const Title = () => {
     >
       <Layout isPortrait={isPortrait}>
         <SubtitleLayout isPortrait={isPortrait}>Invitation</SubtitleLayout>
-        <TitleLayout isPortrait={isPortrait}>
+        <TitleLayout isSmall={isSmall} className={font.className}>
           {isSmall ? (
             <>
               {config.groom.name} <br /> &amp; <br />

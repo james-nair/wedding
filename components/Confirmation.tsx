@@ -140,10 +140,10 @@ export const Confirmation = (props: Props) => {
               </RadioGroup>
             </FormControl>
           </Grid> */}
-            <Grid item xs={3} />
+
             <Grid
               item
-              xs={6}
+              xs={12}
               sx={{ display: "flex", justifyContent: "space-evenly" }}
             >
               <SelectButton
@@ -151,7 +151,9 @@ export const Confirmation = (props: Props) => {
                 onClick={function (id: string): void {
                   setSelected(id);
                   setValue(true);
+                  window.scrollTo(0, document.body.scrollHeight);
                 }}
+                hasBorder
                 id="yes"
               >
                 Accepts with pleasure
@@ -163,13 +165,14 @@ export const Confirmation = (props: Props) => {
                   setSelected(id);
                   setValue(false);
                   setNum(0);
+                  window.scrollTo(0, document.body.scrollHeight);
                 }}
                 id="no"
               >
                 Decline with regrets
               </SelectButton>
             </Grid>
-            <Grid item xs={3} />
+
             {value === undefined ? (
               <></>
             ) : value ? (
@@ -226,14 +229,18 @@ export const Confirmation = (props: Props) => {
                 type="submit"
                 disabled={value === undefined}
                 sx={{
-                  backgroundImage:
-                    "linear-gradient(92deg, rgba(236,191,76,1) 0%, rgba(219,159,5,1) 59%, rgba(226,154,45,1) 100%);",
+                  border: `1px solid #121212`,
+                  backgroundColor: BACKGROUND_COLOR,
+                  color: "#121212",
+                  // backgroundImage:
+                  //   "linear-gradient(92deg, rgba(236,191,76,1) 0%, rgba(219,159,5,1) 59%, rgba(226,154,45,1) 100%);",
                   borderRadius: "1rem",
                   fontSize: "1.25rem",
                   fontWeight: "500",
                   padding: isSm ? "1rem 1.6rem" : "1rem 2.6rem",
                   textAlign: "center",
                   touchAction: "manipulation",
+                  "&:hover": { backgroundColor: "transparent" },
                 }}
               >
                 Send

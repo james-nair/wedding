@@ -34,6 +34,7 @@ export type Ceremony = {
   location: string;
   address: string;
   date: Date;
+  meal?: Date;
   room?: string;
 };
 
@@ -41,14 +42,14 @@ export const MyConfig: Config = {
   weddingDate: new Date(2023, 0, 8),
   location: "Nikko Hotel Saigon",
   groom: {
-    name: "Việt Anh",
+    name: "Viet Anh",
     image: Groom,
     mother: {
       name: "Kim Ngân",
     },
   },
   bride: {
-    name: "Phương Anh",
+    name: "Phuong Anh",
     image: Bride,
     mother: {
       name: "Vũ Thị Hương",
@@ -81,6 +82,7 @@ export const MyConfig: Config = {
   reception: {
     location: "Nikko Hotel Saigon",
     date: new Date(2023, 0, 8, 18, 0),
+    meal: new Date(2023, 0, 8, 19, 0),
     address:
       "235 Nguyen Van Cu Street, Nguyen Cu Trinh Ward, District 11, Ho Chi Minh City",
     room: "Garden",

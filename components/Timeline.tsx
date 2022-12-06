@@ -189,7 +189,7 @@ export const Timeline = () => {
     },
     {
       title: "Reception",
-      time: config.reception.date,
+      time: config.reception.meal ?? config.reception.date,
       icon: <RestaurantIcon sx={{ color: "black" }} />,
       subTitle: "Ceremony and dinner",
     },

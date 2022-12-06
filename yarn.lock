@@ -578,6 +578,16 @@
   resolved "https://registry.yarnpkg.com/@fontsource/elsie/-/elsie-4.5.7.tgz#4327ce2884567f312afcb4d96219b6532c7c7fa4"
   integrity sha512-TrOVsTsTXOxRUKD3hmqK5YidMu7urZxyGwrpVTuNQcKN0bcbqbZ/WAdauuBnUE17otVQAwCt9MvS0SFItdz1EA==
 
+"@fontsource/great-vibes@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/great-vibes/-/great-vibes-4.5.10.tgz#20df1e74ce4a6af446d9b21937f1ff48fa12b25a"
+  integrity sha512-ABrgq127wEex95tVBpa6zAjKDeBzq+c2eHw2qDs/V/Iw+Agp/NHO6I5AWv0iDkWHoboVfckmrDbKO+gchMo0cw==
+
+"@fontsource/love-light@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/love-light/-/love-light-4.5.10.tgz#effc1bf3385a00f0caee8c4a3c7e4b685bc7bef0"
+  integrity sha512-oek3V8k8YeUkSr6ljgjFrFGU+ksVGqQrFwX+NTPv2n4gu7DcRGhSb4hFpynctj/kpKv68Fe0PRm5iJR/jqEHhQ==
+
 "@fontsource/playfair-display@^4.5.12":
   version "4.5.12"
   resolved "https://registry.yarnpkg.com/@fontsource/playfair-display/-/playfair-display-4.5.12.tgz#8f5f5d980e227b84f26138462c7bb644ad6bc604"

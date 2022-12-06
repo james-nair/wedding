@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { useRef } from "react";
 import { useConfig } from "../lib/useConfig";
 import { useIsPortrait } from "../lib/useIsPortrait";
@@ -118,7 +118,7 @@ const TextWrapper = ({
   return (
     <div
       style={{
-        fontSize: isSmall ? "1em" : "2em",
+        fontSize: isSmall ? "1.5rem" : "2.5rem",
         // marginBottom: "1.5rem",
         color: color,
       }}
@@ -161,8 +161,13 @@ export const Invite = ({ name }: Props) => {
           </Header>
           <InnerBox>
             <UpperText>
-              <h3>With joyful hearts we invite you to </h3>
-              <h3>join us at our marriage ceremony and celebration </h3>
+              <Typography variant="body1">
+                With joyful hearts we invite you to{" "}
+              </Typography>
+              <Typography variant="body1">
+                join us at our marriage ceremony and celebration
+              </Typography>
+
               <ThinLine />
 
               <InfoBox isSmall={isSm}>
@@ -170,7 +175,7 @@ export const Invite = ({ name }: Props) => {
                   style={{
                     margin: "1rem 0",
                     // paddingBottom: "1.5rem",
-                    fontSize: isSm ? "1rem" : "2.5rem",
+                    fontSize: isSm ? "1.5rem" : "3rem",
                   }}
                 >
                   <p style={{ color: "black" }}>
@@ -197,10 +202,9 @@ export const Invite = ({ name }: Props) => {
                 <TextWrapper
                   isSmall={isSm}
                   color="black"
-                  text={`Ceremony at ${reception.date.toLocaleTimeString(
-                    "en-AU",
-                    { timeStyle: "short" }
-                  )}`}
+                  text={`At ${reception.date.toLocaleTimeString("en-AU", {
+                    timeStyle: "short",
+                  })}`}
                 />
                 <div style={{ paddingBottom: "1.5rem" }} />
                 <TextWrapper isSmall={isSm} text={reception.location} />

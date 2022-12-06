@@ -3,6 +3,9 @@
 
 /* body { font-family: "Elsie", cursive; } */
 @import "@fontsource/playfair-display";
+@import "@fontsource/great-vibes";
+@import "@fontsource/love-light";
+
 body { 
   font-family: "Playfair Display", serif;
   margin: 0;
