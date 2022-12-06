@@ -5,11 +5,14 @@ import { useIsPortrait } from "../lib/useIsPortrait";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import useOnScreen from "../lib/useOnScreen";
 import { BACKGROUND_COLOR } from "../styles/constant";
-
+import BackgroundImage from "../assets/BackgroundMulti.jpg";
 interface ComponentProps {
   isPortrait?: boolean;
   isSmall?: boolean;
 }
+
+const FADED_BACKGROUND = BACKGROUND_COLOR + "ba";
+
 const Section = styled("section", {
   shouldForwardProp: (prop) => prop !== "isPortrait",
 })<ComponentProps>({
@@ -39,31 +42,51 @@ const GridLayout = styled("div")({
 const InviteBox = styled("div", {
   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
 })<ComponentProps>(({ isSmall }) => ({
-  marginLeft: "auto",
-  marginRight: "auto",
+  // marginLeft: "auto",
+  // marginRight: "auto",
+  width: "100%",
+  marginTop: "5rem",
+  marginBottom: "5rem",
   padding: "3rem 0",
-  maxWidth: isSmall ? "95%" : "80%",
+  // maxWidth: isSmall ? "95%" : "80%",
+  backgroundImage: `url(${BackgroundImage.src})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
 }));
 
 const Header = styled("div")({
-  backgroundImage: `linear-gradient(black, black), linear-gradient(black, black)`,
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "1px 50%, 1px 50%",
-  backgroundPosition: "left bottom, right bottom",
+  // backgroundImage: `linear-gradient(black, black), linear-gradient(black, black)`,
+  // backgroundRepeat: "no-repeat",
+  // backgroundSize: "1px 50%, 1px 50%",
+  // backgroundPosition: "left bottom, right bottom",
   position: "relative",
   zIndex: 1,
   fontSize: "2.5rem",
-  "&::before": {
-    position: "absolute",
-    height: "1px",
-    backgroundColor: "black",
-    content: `""`,
-    top: "50%",
-    left: 0,
-    width: "100%",
-    zIndex: -1,
-  },
+  // "&::before": {
+  //   position: "absolute",
+  //   height: "1px",
+  //   backgroundColor: "black",
+  //   content: `""`,
+  //   top: "50%",
+  //   left: 0,
+  //   width: "100%",
+  //   zIndex: -1,
+  // },
 });
+
+const CurvedBox = styled("div")<ComponentProps>(({ isPortrait, isSmall }) => ({
+  maxWidth: isSmall ? "90%" : "40%",
+  margin: "2rem auto",
+  // paddingTop: "2rem",
+  backgroundColor: FADED_BACKGROUND,
+  borderRadius: "2rem 2rem 2rem 2rem",
+}));
+
+const Content = styled("div")<ComponentProps>(({ isPortrait, isSmall }) => ({
+  maxWidth: "90%",
+  margin: "1rem auto",
+  padding: "2rem 0",
+}));
 
 const TitleLayout = styled("span", {
   shouldForwardProp: (prop) => prop !== "isPortrait",
@@ -76,9 +99,9 @@ const TitleLayout = styled("span", {
 
 const InnerBox = styled("div")({
   paddingTop: "2rem",
-  borderLeft: "1px solid black",
-  borderRight: "1px solid black",
-  borderBottom: "1px solid black",
+  // borderLeft: "1px solid black",
+  // borderRight: "1px solid black",
+  // borderBottom: "1px solid black",
 });
 
 const UpperText = styled("div")({
@@ -98,35 +121,38 @@ const ThinLine = styled("div")({
 const InfoBox = styled("div", {
   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
 })<ComponentProps>(({ isPortrait, isSmall }) => ({
-  border: "1px solid black",
+  // border: "1px solid black",
   borderLeft: 0,
   borderRight: 0,
-  padding: isSmall ? "1rem 1.5rem" : "2.5rem 3rem",
+  // padding: isSmall ? "0.5rem 1rem" : "1.5rem 2rem",
+  width: isSmall ? "90%" : "70%",
+  height: "60vh",
+  margin: "0 auto",
 }));
 
-const TextWrapper = ({
-  text,
-  isPortrait,
-  isSmall,
-  color,
-}: {
-  text: string;
-  color?: string;
-  isPortrait?: boolean;
-  isSmall?: boolean;
-}) => {
-  return (
-    <div
-      style={{
-        fontSize: isSmall ? "1.5rem" : "2.5rem",
-        // marginBottom: "1.5rem",
-        color: color,
-      }}
-    >
-      <p>{text}</p>
-    </div>
-  );
-};
+// const TextWrapper = ({
+//   text,
+//   isPortrait,
+//   isSmall,
+//   color,
+// }: {
+//   text: string;
+//   color?: string;
+//   isPortrait?: boolean;
+//   isSmall?: boolean;
+// }) => {
+//   return (
+//     <div
+//       style={{
+//         fontSize: isSmall ? "1.5rem" : "2.5rem",
+//         // marginBottom: "1.5rem",
+//         color: color,
+//       }}
+//     >
+//       <p>{text}</p>
+//     </div>
+//   );
+// };
 
 type Props = {
   name: string;
@@ -147,72 +173,60 @@ export const Invite = ({ name }: Props) => {
         }}
       >
         <InviteBox isSmall={isSm}>
-          <Header>
-            <TitleLayout
-              sx={{
-                backgroundColor: BACKGROUND_COLOR,
-                // transition: "background 1s ease-in",
-              }}
-            >
-              {/* Dear
-              <br /> */}
-              <span>{name}</span>
-            </TitleLayout>
-          </Header>
-          <InnerBox>
-            <UpperText>
-              <Typography variant="body1">
-                With joyful hearts we invite you to{" "}
-              </Typography>
-              <Typography variant="body1">
-                join us at our marriage ceremony and celebration
-              </Typography>
-
-              <ThinLine />
-
-              <InfoBox isSmall={isSm}>
-                <div
-                  style={{
-                    margin: "1rem 0",
-                    // paddingBottom: "1.5rem",
-                    fontSize: isSm ? "1.5rem" : "3rem",
-                  }}
+          <CurvedBox isSmall={isSm}>
+            <Content>
+              <Header>
+                <TitleLayout
+                // sx={{
+                //   backgroundColor: BACKGROUND_COLOR,
+                //   // transition: "background 1s ease-in",
+                // }}
                 >
-                  <p style={{ color: "black" }}>
-                    {/* {reception.date.getDate().toLocaleString("en-AU", {
-                      minimumIntegerDigits: 2,
-                    })}{" "}
-                    .{" "}
-                    {(reception.date.getMonth() + 1).toLocaleString("en-AU", {
-                      minimumIntegerDigits: 2,
-                    })}{" "}
-                    .{" "}
-                    {reception.date.getFullYear().toLocaleString("en-AU", {
-                      minimumIntegerDigits: 2,
-                      useGrouping: false,
-                    })} */}
+                  {/* Dear
+              <br /> */}
+                  <span>{name}</span>
+                </TitleLayout>
+              </Header>
+              <InnerBox>
+                <Typography variant="h6">
+                  With joyful hearts we invite you to{" "}
+                </Typography>
+                <Typography variant="h6" sx={{ mb: "4rem" }}>
+                  join us at our marriage ceremony and celebration
+                </Typography>
+
+                {/* <ThinLine /> */}
+
+                <InfoBox isSmall={isSm}>
+                  <Typography variant="h4" sx={{ mb: "2rem" }}>
                     {reception.date.toLocaleDateString("en-AU", {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
                       day: "numeric",
                     })}
-                  </p>
-                </div>
-                <TextWrapper
-                  isSmall={isSm}
-                  color="black"
-                  text={`At ${reception.date.toLocaleTimeString("en-AU", {
-                    timeStyle: "short",
-                  })}`}
-                />
-                <div style={{ paddingBottom: "1.5rem" }} />
-                <TextWrapper isSmall={isSm} text={reception.location} />
-                <TextWrapper isSmall={isSm} text={reception.room ?? ""} />
-                <p>{reception.address}</p>
-              </InfoBox>
-            </UpperText>
-          </InnerBox>
+                  </Typography>
+                  <Typography variant="h5" sx={{ mb: "4rem" }}>
+                    {`At ${reception.date.toLocaleTimeString("en-AU", {
+                      timeStyle: "short",
+                    })}`}
+                  </Typography>
+
+                  <Typography variant="h4" sx={{ mb: "2rem" }}>
+                    {reception.location}
+                  </Typography>
+                  <Typography variant="h4" sx={{ mb: "2rem" }}>
+                    {reception.room ?? ""}
+                  </Typography>
+
+                  <Typography variant="h6" sx={{ mb: "2rem" }}>
+                    {reception.address}
+                  </Typography>
+                  {/* <p>{reception.address}</p> */}
+                </InfoBox>
+              </InnerBox>
+            </Content>
+          </CurvedBox>
         </InviteBox>
       </Layout>
     </Section>
