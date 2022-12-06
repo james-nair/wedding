@@ -1,11 +1,18 @@
 import { Box, Grid, styled, Typography } from "@mui/material";
 import { useConfig } from "../lib/useConfig";
-import { BACKGROUND_COLOR, CursiveFont, TitleLayout } from "../styles/constant";
+import {
+  BACKGROUND_COLOR,
+  CursiveFont,
+  FADED_BACKGROUND,
+  TitleLayout,
+} from "../styles/constant";
 import { CustomTimeline, TimelineItem } from "./CustomTimeline";
 import { DoubleHappyIcon } from "./icons/DoubleHappy";
 import { RingsIcon } from "./icons/Rings";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import { useMediaQuery } from "../lib/useMediaQuery";
+import BackgroundImage from "../assets/BackgroundMulti.jpg";
+
 interface ComponentProps {
   isPortrait?: boolean;
   isSmall?: boolean;
@@ -19,13 +26,18 @@ const Section = styled("section", {
   backgroundColor: BACKGROUND_COLOR,
   textAlign: "center",
   padding: "1rem 0 3rem 0",
+  backgroundImage: `url(${BackgroundImage.src})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
 });
 
 const Container = styled("div", {
   shouldForwardProp: (prop) => prop !== "isSmall" && prop !== "isPortrait",
 })<ComponentProps>(({ isSmall }) => ({
-  maxWidth: isSmall ? "95%" : "80%",
+  maxWidth: isSmall ? "90%" : "40%",
   margin: "0 auto",
+  backgroundColor: FADED_BACKGROUND,
+  borderRadius: isSmall ? "35% 35% 1px 1px" : "2rem",
 }));
 
 // const TitleLayout = styled("span", {
@@ -197,7 +209,9 @@ export const Timeline = () => {
   return (
     <Section>
       <Container isSmall={isSmall}>
-        <TitleLayout className={CursiveFont.className}>Timeline</TitleLayout>
+        <TitleLayout variant="h1" className={CursiveFont.className}>
+          Timeline
+        </TitleLayout>
         <CustomTimeline items={items} />
         {/* <Grid container spacing={1}>
           <EventItem

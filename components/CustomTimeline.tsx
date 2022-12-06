@@ -29,7 +29,11 @@ const isEven = (num: number) => num % 2 == 0;
 export const CustomTimeline = (props: Props) => {
   const isSm = useMediaQuery("md");
   return (
-    <Timeline position="alternate" className={TextFont.className}>
+    <Timeline
+      position="alternate"
+      className={TextFont.className}
+      sx={{ paddingTop: 0, pb: "2rem", mt: 0 }}
+    >
       {props.items.map((item, i) => (
         <TimelineItem key={`timeline_${item.title}_${i}`}>
           <TimelineOppositeContent
@@ -43,7 +47,7 @@ export const CustomTimeline = (props: Props) => {
             {item.time.toLocaleDateString("en-AU")}
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineConnector sx={{ height: "5rem" }} />
+            <TimelineConnector sx={{ ...(i > 0 ? { height: "5rem" } : {}) }} />
             <TimelineDot>{item.icon}</TimelineDot>
           </TimelineSeparator>
           <TimelineContent sx={{ m: "auto 0 0" }}>
