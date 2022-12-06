@@ -84,7 +84,7 @@ export const MyConfig: Config = {
     date: new Date(2023, 0, 8, 18, 0),
     meal: new Date(2023, 0, 8, 19, 0),
     address:
-      "235 Nguyen Van Cu Street, Nguyen Cu Trinh Ward, District 11, Ho Chi Minh City",
+      "235 Nguyen Van Cu Street, Nguyen Cu Trinh Ward, District 1, Ho Chi Minh City",
     room: "Garden",
   },
 };
