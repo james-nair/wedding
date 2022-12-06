@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from "react";
 import { StaticImageData } from "next/image";
-import TitleImage from "../assets/PAVAnh_Prewedding_C1_4V0A9188.jpg";
+import TitleImage from "../assets/PAVAnh_Prewedding_C2_IMG_1863-L.jpg";
 import Image1 from "../assets/PAVAnh_Prewedding_C1_4V0A9076-L.jpg";
 import Image2 from "../assets/PAVAnh_Prewedding_C1_4V0A9117-L.jpg";
 import Image3 from "../assets/PAVAnh_Prewedding_C1_4V0A9107.jpg";
