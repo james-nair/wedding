@@ -1,4 +1,5 @@
 import { Grid, Typography } from "@mui/material";
+import Image from "next/image";
 import { Person, Quote } from "../lib/useConfig";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import { CursiveFont } from "../styles/constant";
@@ -45,8 +46,9 @@ export const Info = (props: Props) => {
       }}
     >
       <Grid item xs={12} md={4}>
-        <img
-          src={props.person.image?.src}
+        <Image
+          src={props.person.image ?? ""}
+          alt={`info-image-${props.person.name}-${props.person.image?.src}`}
           style={{
             width: "70%",
             objectFit: "contain",
@@ -78,7 +80,7 @@ export const Info = (props: Props) => {
           {props.quote && (
             <>
               <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-                "{props.quote.content}"
+                &quot;{props.quote.content}&quot;
               </Typography>
               <Typography variant="body2" sx={{ fontStyle: "italic" }}>
                 - {props.quote.author}
@@ -90,9 +92,3 @@ export const Info = (props: Props) => {
     </Grid>
   );
 };
-
-const iLoveYou = () => {};
-
-while (true) {
-  iLoveYou();
-}
