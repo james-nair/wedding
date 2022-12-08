@@ -32,7 +32,6 @@ export const Gallery = () => {
     <section
       ref={ref}
       style={{
-        height: "",
         background: BACKGROUND_COLOR,
         overflow: "hidden",
         position: "relative",

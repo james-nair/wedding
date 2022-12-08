@@ -39,6 +39,7 @@ const TitleLayout = styled(Typography, {
   width: isSmall ? "100%" : "50%",
   // fontSize: isSmall ? "4em" : "5.5em",
   margin: 0,
+  color: BACKGROUND_COLOR,
 }));
 
 const SubtitleLayout = styled(Typography, {

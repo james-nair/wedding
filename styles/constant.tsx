@@ -26,19 +26,21 @@ export const Layout = styled("div", {
   padding: isPortrait ? "30% 0% 15% 5%" : "5% 0% 5% 10%",
 }));
 
-export const Title = styled("p", {
+export const Title = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "isPortrait",
 })<ComponentProps>(({ isPortrait }) => ({
   color: HEADER_COLOR,
   width: "100%",
-  fontSize: isPortrait ? "2.5em" : "3.5em",
+  // fontSize: isPortrait ? "2.5em" : "3.5em",
   margin: 0,
 }));
 
 export const Header = ({ title }: { title: string }) => {
   return (
-    <Layout className={CursiveFont.className}>
-      <Title>{title}</Title>
+    <Layout>
+      <Title variant="h1" className={CursiveFont.className}>
+        {title}
+      </Title>
     </Layout>
   );
 };

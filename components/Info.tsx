@@ -46,8 +46,8 @@ export const Info = (props: Props) => {
       }}
     >
       <Grid item xs={12} md={4}>
-        <Image
-          src={props.person.image ?? ""}
+        <img
+          src={props.person.image?.src}
           alt={`info-image-${props.person.name}-${props.person.image?.src}`}
           style={{
             width: "70%",

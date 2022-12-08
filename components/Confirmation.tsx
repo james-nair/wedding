@@ -15,7 +15,12 @@ import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { firestore } from "../lib/firebase";
 import { useMediaQuery } from "../lib/useMediaQuery";
-import { BACKGROUND_COLOR } from "../styles/constant";
+import {
+  BACKGROUND_COLOR,
+  CursiveFont,
+  Header,
+  TitleLayout,
+} from "../styles/constant";
 import { Guest } from "./admin/types";
 import { SelectButton } from "./SelectButton";
 
@@ -33,15 +38,15 @@ const Section = styled("section", {
   transition: "background 1s ease-in",
 });
 
-const TitleLayout = styled("span", {
-  shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
-})<ComponentProps>(({ isSmall }) => ({
-  padding: `0 1rem`,
-  margin: "auto",
-  maxWidth: isSmall ? "95%" : "80%",
-  display: "inline-block",
-  fontSize: "2.5rem",
-}));
+// const TitleLayout = styled("span", {
+//   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
+// })<ComponentProps>(({ isSmall }) => ({
+//   padding: `0 1rem`,
+//   margin: "auto",
+//   maxWidth: isSmall ? "95%" : "80%",
+//   display: "inline-block",
+//   // fontSize: "2.5rem",
+// }));
 
 const FormBox = styled("div", {
   shouldForwardProp: (prop) => prop !== "isPortrait" && prop !== "isSmall",
@@ -97,15 +102,22 @@ export const Confirmation = (props: Props) => {
     <form onSubmit={submit}>
       <Section>
         <FormBox isSmall={isSm}>
-          <TitleLayout
+          {/* <TitleLayout
             sx={{ backgroundColor: BACKGROUND_COLOR }}
             isSmall={isSm}
           >
             <span>Will you make it?</span>
+          </TitleLayout> */}
+          <TitleLayout variant="h1" className={CursiveFont.className}>
+            Will you come celebrate with us?
           </TitleLayout>
           <Subtitle>
-            <h3>We would love for you to join us there for our special day</h3>
-            <h3>Please kindly reply. We cannot wait to see you!</h3>
+            <Typography variant="h5">
+              We would love for you to join us there for our special day
+            </Typography>
+            <Typography variant="h5">
+              Please kindly reply. We cannot wait to see you!
+            </Typography>
           </Subtitle>
           <Grid container spacing={5}>
             {/* <Grid item xs={12}>
@@ -208,8 +220,9 @@ export const Confirmation = (props: Props) => {
             ) : (
               <Grid item xs={12}>
                 <Subtitle>
-                  <h3
-                    style={{
+                  <Typography
+                    variant="h2"
+                    sx={{
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
@@ -218,7 +231,7 @@ export const Confirmation = (props: Props) => {
                   >
                     Aw &#128549; that&apos;s okay. Do let us know if you change
                     your mind &#128523;
-                  </h3>
+                  </Typography>
                 </Subtitle>
               </Grid>
             )}

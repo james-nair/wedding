@@ -51,7 +51,7 @@ export const MyConfig: Config = {
     name: "Viet Anh",
     image: Groom,
     quote: {
-      content: "Love is like pi – natural, irrational, and very important.",
+      content: "Love is like Pi – natural, irrational, and very important.",
       author: "Lisa Hoffman",
     },
     mother: {
