@@ -5,6 +5,7 @@ export type ImageDisplay = {
   src: string;
   cols: number;
   rows: number;
+  objectPosition?: string;
 };
 
 function srcset(image: string, size: number, rows = 1, cols = 1) {
@@ -37,7 +38,10 @@ export const QuiltedImageList = (props: Props) => {
             alt={`quilted-image-${item.src}`}
             {...srcset(item.src, props.rowHeight, item.rows, item.cols)}
           /> */}
-          <img src={item.src} />
+          <img
+            src={item.src}
+            style={{ objectFit: "cover", objectPosition: item.objectPosition }}
+          />
         </ImageListItem>
       ))}
     </ImageList>

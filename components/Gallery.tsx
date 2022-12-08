@@ -11,11 +11,11 @@ import {
   Header,
 } from "../styles/constant";
 import { ImageDisplay, QuiltedImageList } from "./QuiltedImageList";
-import Image1 from "../assets/PAVAnh_Prewedding_C1_4V0A9260-L.jpg";
+import Image1 from "../assets/PAVAnh_Prewedding_C1_4V0A9336-L.jpg";
 import Image2 from "../assets/PAVAnh_Prewedding_C1_4V0A9387-L.jpg";
-import Image3 from "../assets/PAVAnh_Prewedding_C1_4V0A9332-L.jpg";
-import Image4 from "../assets/PAVAnh_Prewedding_C1_4V0A9292-L.jpg";
-import Image5 from "../assets/PAVAnh_Prewedding_C1_4V0A9278-L.jpg";
+import Image3 from "../assets/PAVAnh_Prewedding_C1_4V0A9292-L.jpg";
+import Image4 from "../assets/PAVAnh_Prewedding_C1_4V0A9278-L.jpg";
+import Image5 from "../assets/PAVAnh_Prewedding_C1_4V0A9332-L.jpg";
 import Image6 from "../assets/PAVAnh_Prewedding_C1_4V0A9472.jpg";
 interface ComponentProps {
   isPortrait?: boolean;
@@ -65,18 +65,20 @@ const ItemData = (): ImageDisplay[] => {
   return [
     {
       src: Image1.src,
-      cols: 2,
-      rows: 6,
+      cols: 1,
+      rows: 3,
+      objectPosition: "50%",
     },
     {
       src: Image2.src,
       cols: 1,
       rows: 3,
+      objectPosition: "75%",
     },
     {
       src: Image3.src,
-      cols: 1,
-      rows: 3,
+      cols: 2,
+      rows: 6,
     },
     {
       src: Image4.src,
