@@ -30,8 +30,18 @@ export const AboutUs = () => {
   return (
     <Section>
       <Container>
-        <Info person={config.groom} title="The Groom" left />
-        <Info person={config.bride} title="The Bride" right />
+        <Info
+          person={config.groom}
+          title="The Groom"
+          left
+          quote={config.groom.quote}
+        />
+        <Info
+          person={config.bride}
+          title="The Bride"
+          right
+          quote={config.bride.quote}
+        />
       </Container>
     </Section>
   );

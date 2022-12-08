@@ -28,6 +28,7 @@ export type Person = {
   image?: StaticImageData;
   father?: Person;
   mother?: Person;
+  quote?: Quote;
 };
 
 export type Ceremony = {
@@ -38,12 +39,21 @@ export type Ceremony = {
   room?: string;
 };
 
+export type Quote = {
+  content: string;
+  author: string;
+};
+
 export const MyConfig: Config = {
   weddingDate: new Date(2023, 0, 8),
   location: "Nikko Hotel Saigon",
   groom: {
     name: "Viet Anh",
     image: Groom,
+    quote: {
+      content: "Love is like pi – natural, irrational, and very important.",
+      author: "Lisa Hoffman",
+    },
     mother: {
       name: "Kim Ngân",
     },
@@ -51,6 +61,11 @@ export const MyConfig: Config = {
   bride: {
     name: "Phuong Anh",
     image: Bride,
+    quote: {
+      content:
+        "We are all a little weird. And life is a little weird. And when we find someone whose weirdness is compatible with ours, we join up with them and fall into mutually satisfying weirdness—and call it love—true love.",
+      author: "Robert Fulghum",
+    },
     mother: {
       name: "Vũ Thị Hương",
     },
@@ -81,8 +96,8 @@ export const MyConfig: Config = {
   },
   reception: {
     location: "Nikko Hotel Saigon",
-    date: new Date(2023, 0, 8, 18, 0),
-    meal: new Date(2023, 0, 8, 19, 0),
+    date: new Date(2023, 0, 8, 17, 0),
+    meal: new Date(2023, 0, 8, 18, 30),
     address:
       "235 Nguyen Van Cu Street, Nguyen Cu Trinh Ward, District 1, Ho Chi Minh City",
     room: "Garden",

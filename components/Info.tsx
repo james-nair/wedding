@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import { Person } from "../lib/useConfig";
+import { Person, Quote } from "../lib/useConfig";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import { CursiveFont } from "../styles/constant";
 
@@ -9,6 +9,7 @@ type ImageLocation =
 type Props = {
   title: string;
   person: Person;
+  quote?: Quote;
 } & ImageLocation;
 export const Info = (props: Props) => {
   const isSmall = useMediaQuery("md");
@@ -57,16 +58,41 @@ export const Info = (props: Props) => {
         <div
           style={{
             // maxWidth: "70%",
-            ...(isSmall && { paddingBottom: "5rem" }),
-            ...(!isSmall && { textAlign: props.left ? "left" : "right" }),
+            ...(isSmall && {
+              paddingBottom: "5rem",
+              // width: "80%",
+            }),
+            ...(!isSmall && {
+              textAlign: props.left ? "left" : "right",
+              width: "50%",
+              ...(!isSmall && props.left
+                ? { marginRight: "auto" }
+                : { marginLeft: "auto" }),
+            }),
           }}
         >
           <Typography variant="h4">{props.title}</Typography>
           <Typography variant="h3" className={CursiveFont.className}>
             {props.person.name}
           </Typography>
+          {props.quote && (
+            <>
+              <Typography variant="body1" sx={{ fontStyle: "italic" }}>
+                "{props.quote.content}"
+              </Typography>
+              <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+                - {props.quote.author}
+              </Typography>
+            </>
+          )}
         </div>
       </Grid>
     </Grid>
   );
 };
+
+const iLoveYou = () => {};
+
+while (true) {
+  iLoveYou();
+}
