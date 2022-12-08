@@ -2,14 +2,18 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditIcon from "@mui/icons-material/Edit";
 import {
   Button,
+  FormControlLabel,
+  FormGroup,
   IconButton,
   Paper,
-  Table,
+  Switch,
+  Table as MuiTable,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -21,8 +25,66 @@ type Props = {
   label: string;
   guestList: Guest[];
 };
+
+type TableProps = {
+  guestList: Guest[];
+  editClicked: (guest: Guest) => void;
+};
+const Table = (props: TableProps) => {
+  return props.guestList.length > 0 ? (
+    <TableContainer component={Paper}>
+      <MuiTable sx={{ minWidth: "70%", margin: "auto" }}>
+        <TableHead>
+          <TableRow>
+            {Object.keys(props.guestList[0]).map((field, i) => (
+              <TableCell key={`field_${field}_i_${i}`}>{field} </TableCell>
+            ))}
+            <TableCell /> {/** Extra cell for the edit button */}
+            <TableCell>Link</TableCell>
+          </TableRow>
+        </TableHead>
+
+        <TableBody>
+          {props.guestList.map((guest, i) => (
+            <TableRow key={`guest_${guest.url}`}>
+              {Object.keys(guest).map((key, i: number) => (
+                <TableCell key={`value_${key}_i_${i}`}>
+                  {guest[key as keyof Guest].toString()}
+                </TableCell>
+              ))}
+              <TableCell>
+                <IconButton
+                  size="large"
+                  onClick={() => props.editClicked(guest)}
+                >
+                  <EditIcon />
+                </IconButton>
+              </TableCell>
+              <TableCell>
+                <IconButton
+                  size={"large"}
+                  onClick={() => {
+                    const link = `${window.location.hostname}/${guest.url}`;
+                    toast("Link copied: " + link);
+                    navigator.clipboard.writeText(link);
+                  }}
+                >
+                  <ContentCopyIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </MuiTable>
+    </TableContainer>
+  ) : (
+    <h3>No Guests Available</h3>
+  );
+};
+
 export const GuestTable = (props: Props) => {
   const [open, setOpen] = useState(false);
+  const [split, setSplit] = useState(false);
   const [editingGuest, setEditingGuest] = useState<Guest>();
 
   return (
@@ -38,58 +100,49 @@ export const GuestTable = (props: Props) => {
       >
         Add new guest
       </Button>
+      <FormControlLabel
+        sx={{ paddingLeft: "1rem", marginLeft: "1rem" }}
+        control={<Switch value={split} onChange={(e, c) => setSplit(c)} />}
+        label={split ? "Splitted" : "Combined"}
+      />
 
-      {props.guestList.length > 0 ? (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: "70%", margin: "auto" }}>
-            <TableHead>
-              <TableRow>
-                {Object.keys(props.guestList[0]).map((field, i) => (
-                  <TableCell key={`field_${field}_i_${i}`}>{field} </TableCell>
-                ))}
-                <TableCell /> {/** Extra cell for the edit button */}
-                <TableCell>Link</TableCell>
-              </TableRow>
-            </TableHead>
-
-            <TableBody>
-              {props.guestList.map((guest, i) => (
-                <TableRow key={`guest_${guest.url}`}>
-                  {Object.keys(guest).map((key, i: number) => (
-                    <TableCell key={`value_${key}_i_${i}`}>
-                      {guest[key as keyof Guest].toString()}
-                    </TableCell>
-                  ))}
-                  <TableCell>
-                    <IconButton
-                      size="large"
-                      onClick={() => {
-                        setEditingGuest(guest);
-                        setOpen(true);
-                      }}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>
-                    <IconButton
-                      size={"large"}
-                      onClick={() => {
-                        const link = `${window.location.hostname}/${guest.url}`;
-                        toast("Link copied: " + link);
-                        navigator.clipboard.writeText(link);
-                      }}
-                    >
-                      <ContentCopyIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+      {split ? (
+        <div>
+          <Typography>Family</Typography>
+          <Table
+            guestList={props.guestList.filter((g) => g.type === "Family")}
+            editClicked={(guest) => {
+              setEditingGuest(guest);
+              setOpen(true);
+            }}
+          />
+          <div style={{ marginTop: "2rem", marginBottom: "2rem" }} />
+          <Typography>Friends</Typography>
+          <Table
+            guestList={props.guestList.filter((g) => g.type === "Friend")}
+            editClicked={(guest) => {
+              setEditingGuest(guest);
+              setOpen(true);
+            }}
+          />
+          <div style={{ marginTop: "2rem", marginBottom: "2rem" }} />
+          <Typography>Others</Typography>
+          <Table
+            guestList={props.guestList.filter((g) => g.type === "Others")}
+            editClicked={(guest) => {
+              setEditingGuest(guest);
+              setOpen(true);
+            }}
+          />
+        </div>
       ) : (
-        <h3>No Guests Available</h3>
+        <Table
+          guestList={props.guestList}
+          editClicked={(guest) => {
+            setEditingGuest(guest);
+            setOpen(true);
+          }}
+        />
       )}
 
       <ModalForm open={open} handleModalStatus={setOpen} title="Add Guest">

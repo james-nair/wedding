@@ -23,7 +23,7 @@ const DialogHeader = (props: DialogHeaderPropsType): JSX.Element => {
   return (
     <AppBar position="absolute">
       <Toolbar>
-        <Typography variant="h6" sx={{ flex: 1 }}>
+        <Typography variant="h6" sx={{ flex: 1, color: "white" }}>
           {props.title}
         </Typography>
         {!props.disabledExit && (

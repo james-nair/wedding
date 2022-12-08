@@ -1,7 +1,7 @@
-export const category = ["Friend", "Family", "Others"];
+export const category = ["Friend", "Family", "Others"] as const;
 export type Category = typeof category[number];
 
-export const invitedBy = ["Bride", "Groom", "Both"];
+export const invitedBy = ["Bride", "Groom", "Both"] as const;
 export type InvitedBy = typeof invitedBy[number];
 
 export class Guest {

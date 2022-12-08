@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { GuestTable } from "../../components/admin/GuestTable";
+import { GuestViewer } from "../../components/admin/GuestViewer";
 import { Guest } from "../../components/admin/types";
 import { AuthWrapper } from "../../components/AuthWrapper";
 import { auth, firestore } from "../../lib/firebase";
@@ -77,7 +78,8 @@ const AdminPage = (props: AdminPageProps) => {
                 maxWidth: "70%",
               }}
             >
-              <GuestTable label={"Guest List"} guestList={guests} />
+              {/* <GuestTable label={"Guest List"} guestList={guests} /> */}
+              <GuestViewer guests={guests} />
             </div>
           </Layout>
         </Section>
