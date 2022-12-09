@@ -9,16 +9,17 @@ import { Firestore, getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyApSfzKVNaIw29aIFFHlUiXcyAh40q7gew",
-  authDomain: "nextfire-app-249db.firebaseapp.com",
-  projectId: "nextfire-app-249db",
-  storageBucket: "nextfire-app-249db.appspot.com",
-  messagingSenderId: "334592210423",
-  appId: "1:334592210423:web:985d915cb70591d49a6af2",
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+console.log("firebase config", firebaseConfig);
 export const auth = getAuth(app);
 export const googleAuthProvider = new GoogleAuthProvider();
 export const firestore = getFirestore(app);
