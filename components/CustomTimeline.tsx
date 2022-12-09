@@ -39,7 +39,7 @@ export const CustomTimeline = (props: Props) => {
           <TimelineOppositeContent
             sx={{ m: "auto 0 0" }}
             {...(isEven(i) && { align: "right" })}
-            variant="body1"
+            variant="h5"
 
             // sx={{ display: "flex", alignItems: "flex-end" }}
           >
