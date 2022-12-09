@@ -79,9 +79,8 @@ export const Confirmation = (props: Props) => {
         const ref = doc(firestore, "guests", props.guest.url);
         const data: Guest = {
           ...props.guest,
-          confirmed: true,
           partyOf: num,
-          going: value ?? false,
+          ...(value !== undefined && { going: value }), //only append the going value if either true or false
         };
 
         await setDoc(ref, data);

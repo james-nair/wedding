@@ -88,8 +88,6 @@ export const AddGuestForm = (props: Props) => {
           partyOf: 0,
           side,
           type,
-          confirmed: false,
-          going: false,
         };
         await setDoc(ref, data);
         toast.success("Guest added!");

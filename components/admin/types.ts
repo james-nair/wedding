@@ -11,8 +11,8 @@ export class Guest {
   partyOf: number = 1;
   side: InvitedBy = "Bride";
   type: Category = "Others";
-  confirmed: boolean = false;
-  going: boolean = false;
+  // confirmed: boolean = false;
+  going?: boolean;
 
   constructor(guest?: Guest) {
     if (guest) {
@@ -22,7 +22,7 @@ export class Guest {
       this.partyOf = guest.partyOf;
       this.side = guest.side;
       this.type = guest.type;
-      this.confirmed = guest.confirmed;
+      // this.confirmed = guest.confirmed;
       this.going = guest.going;
     }
   }

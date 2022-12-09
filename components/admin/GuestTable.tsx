@@ -1,4 +1,4 @@
-import { Check, Close, Delete } from "@mui/icons-material";
+import { Check, Close, Delete, Warning } from "@mui/icons-material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditIcon from "@mui/icons-material/Edit";
 import {
@@ -47,14 +47,22 @@ const Table = (props: TableProps) => {
   //   }
   // };
 
-  const transformValue = (e: string | boolean | number) => {
-    if (typeof e === "boolean") {
-      return e ? (
-        <Chip icon={<Check color="success" />} label="Yes" />
-      ) : (
-        <Chip icon={<Close color="error" />} label="No" />
+  const transformValue = (e: string | boolean | number | undefined) => {
+    if (typeof e === "string" || typeof e === "number") {
+      return e.toString();
+    }
+
+    if (e === undefined) {
+      return (
+        <Chip icon={<Warning color="warning" />} label="Not yet response" />
       );
-    } else return e.toString();
+    }
+
+    return e ? (
+      <Chip icon={<Check color="success" />} label="Yes" />
+    ) : (
+      <Chip icon={<Close color="error" />} label="No" />
+    );
   };
 
   return props.guestList.length > 0 ? (
