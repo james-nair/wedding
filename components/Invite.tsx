@@ -204,16 +204,16 @@ export const Invite = ({ name }: Props) => {
                       day: "numeric",
                     })}
                   </Typography>
-                  <Typography variant="h5" sx={{ mb: "4rem" }}>
+                  <Typography variant="h4" sx={{ mb: "4rem" }}>
                     {`At ${reception.date.toLocaleTimeString("en-AU", {
                       timeStyle: "short",
                     })}`}
                   </Typography>
 
-                  <Typography variant="h4" sx={{ mb: "2rem" }}>
+                  <Typography variant="h5" sx={{ mb: "2rem" }}>
                     {reception.location}
                   </Typography>
-                  <Typography variant="h4" sx={{ mb: "2rem" }}>
+                  <Typography variant="h5" sx={{ mb: "2rem" }}>
                     {reception.room ?? ""}
                   </Typography>
 
