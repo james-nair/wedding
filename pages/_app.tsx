@@ -16,6 +16,11 @@ const theme = responsiveFontSizes(
         color: HEADER_COLOR,
       },
     },
+    palette: {
+      primary: {
+        main: "#121212",
+      },
+    },
   })
 );
 

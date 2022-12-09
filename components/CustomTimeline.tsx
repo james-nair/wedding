@@ -11,7 +11,6 @@ import { Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 import { useMediaQuery } from "../lib/useMediaQuery";
-import { TextFont } from "../styles/constant";
 
 export type TimelineItem = {
   title: string;
@@ -29,11 +28,7 @@ const isEven = (num: number) => num % 2 == 0;
 export const CustomTimeline = (props: Props) => {
   const isSm = useMediaQuery("md");
   return (
-    <Timeline
-      position="alternate"
-      className={TextFont.className}
-      sx={{ paddingTop: 0, pb: "2rem", mt: 0 }}
-    >
+    <Timeline position="alternate" sx={{ paddingTop: 0, pb: "2rem", mt: 0 }}>
       {props.items.map((item, i) => (
         <TimelineItem key={`timeline_${item.title}_${i}`}>
           <TimelineOppositeContent

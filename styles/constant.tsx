@@ -2,12 +2,12 @@ import { styled, Typography } from "@mui/material";
 
 import { Alex_Brush, Elsie } from "@next/font/google";
 
-export const CursiveFont = Alex_Brush({
-  subsets: ["vietnamese", "latin"],
-  weight: "400",
-});
+// export const CursiveFont = Alex_Brush({
+//   subsets: ["vietnamese", "latin"],
+//   weight: "400",
+// });
 
-export const TextFont = Elsie({ subsets: ["latin"], weight: ["400", "900"] });
+// export const TextFont = Elsie({ subsets: ["latin"], weight: ["400", "900"] });
 //original is #EFEBE9
 export const BACKGROUND_COLOR = "#fcfaf5";
 export const FADED_BACKGROUND = BACKGROUND_COLOR + "ba";
@@ -32,15 +32,14 @@ export const Title = styled(Typography, {
   color: HEADER_COLOR,
   width: "100%",
   // fontSize: isPortrait ? "2.5em" : "3.5em",
+  fontFamily: "Alex Brush",
   margin: 0,
 }));
 
 export const Header = ({ title }: { title: string }) => {
   return (
     <Layout>
-      <Title variant="h1" className={CursiveFont.className}>
-        {title}
-      </Title>
+      <Title variant="h1">{title}</Title>
     </Layout>
   );
 };
@@ -53,4 +52,5 @@ export const TitleLayout = styled(Typography, {
   marginTop: "1rem",
   maxWidth: isSmall ? "95%" : "80%",
   display: "inline-block",
+  fontFamily: "Alex Brush",
 }));

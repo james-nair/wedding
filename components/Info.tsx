@@ -2,7 +2,6 @@ import { Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { Person, Quote } from "../lib/useConfig";
 import { useMediaQuery } from "../lib/useMediaQuery";
-import { CursiveFont } from "../styles/constant";
 
 type ImageLocation =
   | { left: true; right?: never }
@@ -74,7 +73,7 @@ export const Info = (props: Props) => {
           }}
         >
           <Typography variant="h4">{props.title}</Typography>
-          <Typography variant="h3" className={CursiveFont.className}>
+          <Typography variant="h3" sx={{ fontFamily: "Alex Brush" }}>
             {props.person.name}
           </Typography>
           {props.quote && (

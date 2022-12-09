@@ -2,7 +2,6 @@ import { Box, Grid, styled, Typography } from "@mui/material";
 import { useConfig } from "../lib/useConfig";
 import {
   BACKGROUND_COLOR,
-  CursiveFont,
   FADED_BACKGROUND,
   TitleLayout,
 } from "../styles/constant";
@@ -209,9 +208,7 @@ export const Timeline = () => {
   return (
     <Section>
       <Container isSmall={isSmall}>
-        <TitleLayout variant="h1" className={CursiveFont.className}>
-          Timeline
-        </TitleLayout>
+        <TitleLayout variant="h1">Timeline</TitleLayout>
         <CustomTimeline items={items} />
         {/* <Grid container spacing={1}>
           <EventItem

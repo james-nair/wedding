@@ -5,7 +5,8 @@
 @import "@fontsource/playfair-display";
 @import "@fontsource/great-vibes";
 @import "@fontsource/love-light";
-
+@import "@fontsource/alex-brush";
+@import "@fontsource/xanh-mono";
 body { 
   font-family: "Playfair Display", serif;
   margin: 0;

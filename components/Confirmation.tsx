@@ -15,12 +15,7 @@ import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { firestore } from "../lib/firebase";
 import { useMediaQuery } from "../lib/useMediaQuery";
-import {
-  BACKGROUND_COLOR,
-  CursiveFont,
-  Header,
-  TitleLayout,
-} from "../styles/constant";
+import { BACKGROUND_COLOR, Header, TitleLayout } from "../styles/constant";
 import { Guest } from "./admin/types";
 import { SelectButton } from "./SelectButton";
 
@@ -107,7 +102,7 @@ export const Confirmation = (props: Props) => {
           >
             <span>Will you make it?</span>
           </TitleLayout> */}
-          <TitleLayout variant="h1" className={CursiveFont.className}>
+          <TitleLayout variant="h1">
             Will you come celebrate with us?
           </TitleLayout>
           <Subtitle>
@@ -189,12 +184,14 @@ export const Confirmation = (props: Props) => {
             ) : value ? (
               <Grid item xs={12}>
                 <Subtitle>
-                  <h3
+                  <Typography
+                    variant="h6"
                     style={{
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
                       height: "3rem",
+                      fontWeight: "bold",
                     }}
                   >
                     Awesome! &#127881; How many people are coming?{" "}
@@ -211,21 +208,36 @@ export const Confirmation = (props: Props) => {
                         onChange={(e) =>
                           setNum(parseFloat(e.currentTarget.value))
                         }
+                        color="primary"
+                        // sx={{
+                        //   "& .MuiOutlinedInput-root": {
+                        //     "& fieldset": {
+                        //       borderColor: "red",
+                        //     },
+                        //     "&:hover fieldset": {
+                        //       borderColor: "yellow",
+                        //     },
+                        //     "&.Mui-focused fieldset": {
+                        //       borderColor: "green",
+                        //     },
+                        //   },
+                        // }}
                       />
                     </FormControl>
-                  </h3>
+                  </Typography>
                 </Subtitle>
               </Grid>
             ) : (
               <Grid item xs={12}>
                 <Subtitle>
                   <Typography
-                    variant="h2"
+                    variant="h6"
                     sx={{
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
                       height: "3rem",
+                      fontWeight: "bold",
                     }}
                   >
                     Aw &#128549; that&apos;s okay. Do let us know if you change
