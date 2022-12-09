@@ -57,7 +57,7 @@ const AdminPage = (props: AdminPageProps) => {
   }, []);
 
   return (
-    <main style={{ height: "100%" }}>
+    <main style={{ height: "auto", fontFamily: "Roboto" }}>
       <AuthWrapper>
         <Section>
           <Button
