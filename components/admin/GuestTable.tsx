@@ -1,7 +1,9 @@
+import { Check, Close, Delete } from "@mui/icons-material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditIcon from "@mui/icons-material/Edit";
 import {
   Button,
+  Chip,
   FormControlLabel,
   FormGroup,
   IconButton,
@@ -15,11 +17,15 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { deleteDoc, doc } from "firebase/firestore";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { VoidExpression } from "typescript";
+import { firestore } from "../../lib/firebase";
 import { ModalForm } from "../ModalForm";
 import { AddGuestForm } from "./AddGuestForm";
-import { Guest } from "./types";
+import { DeleteGuestForm } from "./DeleteGuestForm";
+import { Category, Guest, InvitedBy } from "./types";
 
 type Props = {
   label: string;
@@ -29,8 +35,28 @@ type Props = {
 type TableProps = {
   guestList: Guest[];
   editClicked: (guest: Guest) => void;
+  deleteClicked: (guest: Guest) => void;
 };
 const Table = (props: TableProps) => {
+  // const handleDelete = async (url: string) => {
+  //   try {
+  //     const ref = doc(firestore, "guests", url);
+  //     await deleteDoc(ref);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const transformValue = (e: string | boolean | number) => {
+    if (typeof e === "boolean") {
+      return e ? (
+        <Chip icon={<Check color="success" />} label="Yes" />
+      ) : (
+        <Chip icon={<Close color="error" />} label="No" />
+      );
+    } else return e.toString();
+  };
+
   return props.guestList.length > 0 ? (
     <TableContainer component={Paper}>
       <MuiTable sx={{ minWidth: "70%", margin: "auto" }}>
@@ -41,15 +67,17 @@ const Table = (props: TableProps) => {
             ))}
             <TableCell /> {/** Extra cell for the edit button */}
             <TableCell>Link</TableCell>
+            <TableCell>Delete</TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
           {props.guestList.map((guest, i) => (
-            <TableRow key={`guest_${guest.url}`}>
+            <TableRow key={`guest_${guest.url}`} sx={{}}>
               {Object.keys(guest).map((key, i: number) => (
                 <TableCell key={`value_${key}_i_${i}`}>
-                  {guest[key as keyof Guest].toString()}
+                  {/* {guest[key as keyof Guest].toString()} */}
+                  {transformValue(guest[key as keyof Guest])}
                 </TableCell>
               ))}
               <TableCell>
@@ -72,6 +100,16 @@ const Table = (props: TableProps) => {
                   <ContentCopyIcon />
                 </IconButton>
               </TableCell>
+              <TableCell>
+                <IconButton
+                  size={"large"}
+                  onClick={() => {
+                    props.deleteClicked(guest);
+                  }}
+                >
+                  <Delete />
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -84,8 +122,9 @@ const Table = (props: TableProps) => {
 
 export const GuestTable = (props: Props) => {
   const [open, setOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const [split, setSplit] = useState(false);
-  const [editingGuest, setEditingGuest] = useState<Guest>();
+  const [selectedGuest, setSelectedGuest] = useState<Guest>();
 
   return (
     <div>
@@ -94,7 +133,7 @@ export const GuestTable = (props: Props) => {
         variant="contained"
         sx={{ marginBottom: "1rem" }}
         onClick={() => {
-          setEditingGuest(undefined);
+          setSelectedGuest(undefined);
           setOpen(true);
         }}
       >
@@ -112,8 +151,12 @@ export const GuestTable = (props: Props) => {
           <Table
             guestList={props.guestList.filter((g) => g.type === "Family")}
             editClicked={(guest) => {
-              setEditingGuest(guest);
+              setSelectedGuest(guest);
               setOpen(true);
+            }}
+            deleteClicked={(guest) => {
+              setSelectedGuest(guest);
+              setDeleteOpen(true);
             }}
           />
           <div style={{ marginTop: "2rem", marginBottom: "2rem" }} />
@@ -121,8 +164,12 @@ export const GuestTable = (props: Props) => {
           <Table
             guestList={props.guestList.filter((g) => g.type === "Friend")}
             editClicked={(guest) => {
-              setEditingGuest(guest);
+              setSelectedGuest(guest);
               setOpen(true);
+            }}
+            deleteClicked={(guest) => {
+              setSelectedGuest(guest);
+              setDeleteOpen(true);
             }}
           />
           <div style={{ marginTop: "2rem", marginBottom: "2rem" }} />
@@ -130,8 +177,12 @@ export const GuestTable = (props: Props) => {
           <Table
             guestList={props.guestList.filter((g) => g.type === "Others")}
             editClicked={(guest) => {
-              setEditingGuest(guest);
+              setSelectedGuest(guest);
               setOpen(true);
+            }}
+            deleteClicked={(guest) => {
+              setSelectedGuest(guest);
+              setDeleteOpen(true);
             }}
           />
         </div>
@@ -139,14 +190,29 @@ export const GuestTable = (props: Props) => {
         <Table
           guestList={props.guestList}
           editClicked={(guest) => {
-            setEditingGuest(guest);
+            setSelectedGuest(guest);
             setOpen(true);
+          }}
+          deleteClicked={(guest) => {
+            setSelectedGuest(guest);
+            setDeleteOpen(true);
           }}
         />
       )}
 
       <ModalForm open={open} handleModalStatus={setOpen} title="Add Guest">
-        <AddGuestForm close={() => setOpen(false)} guest={editingGuest} />
+        <AddGuestForm close={() => setOpen(false)} guest={selectedGuest} />
+      </ModalForm>
+
+      <ModalForm
+        open={deleteOpen}
+        handleModalStatus={setDeleteOpen}
+        title={`Confirm removing ${selectedGuest?.name} `}
+      >
+        <DeleteGuestForm
+          close={() => setDeleteOpen(false)}
+          guest={selectedGuest!}
+        />
       </ModalForm>
     </div>
   );

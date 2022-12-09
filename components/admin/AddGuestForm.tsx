@@ -15,6 +15,7 @@ import { FormEvent, useCallback, useEffect, useState } from "react";
 import { firestore } from "../../lib/firebase";
 import { InvitedBy, Category, invitedBy, category, Guest } from "./types";
 import toast from "react-hot-toast";
+import { convertVietnameseToEnglishSlug } from "../../lib/stringHelpers";
 
 const UsernameMessage = ({
   username,
@@ -108,7 +109,10 @@ export const AddGuestForm = (props: Props) => {
             label="Name"
             sx={{ width: "100%" }}
             value={name}
-            onChange={(e) => setName(e.currentTarget.value)}
+            onChange={(e) => {
+              setName(e.currentTarget.value);
+              setUrl(convertVietnameseToEnglishSlug(e.currentTarget.value));
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -116,12 +120,15 @@ export const AddGuestForm = (props: Props) => {
             required
             label="URL"
             sx={{ width: "100%" }}
+            InputLabelProps={{
+              shrink: true,
+            }}
             value={url}
             onChange={(e) => {
               setUrl(e.currentTarget.value);
               setLoading(true);
             }}
-            disabled={!!props.guest}
+            // disabled={!!props.guest}
           />
         </Grid>
         {!props.guest && (
