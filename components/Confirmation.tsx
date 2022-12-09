@@ -209,6 +209,7 @@ export const Confirmation = (props: Props) => {
                           setNum(parseFloat(e.currentTarget.value))
                         }
                         color="primary"
+                        sx={{ fontWeight: "bold" }}
                         // sx={{
                         //   "& .MuiOutlinedInput-root": {
                         //     "& fieldset": {
