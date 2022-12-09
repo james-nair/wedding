@@ -36,7 +36,6 @@ export const LoginForm = () => {
 
     try {
       let user = await signInWithEmailAndPassword(auth, username, password);
-      console.log(user);
     } catch (error) {
       setLoading(false);
       console.log(error);

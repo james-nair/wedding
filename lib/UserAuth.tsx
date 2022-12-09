@@ -29,7 +29,6 @@ export const UserAuth = (props: UserAuthProps) => {
 
     if (user) {
       unsubscribe = onSnapshot(doc(firestore, "users", user.uid), (doc) => {
-        console.log("called callback", doc.data());
         setUsername(doc.data()?.username);
       });
     } else {

@@ -45,7 +45,6 @@ const AdminPage = (props: AdminPageProps) => {
       unsub = onSnapshot(guestsRef, (doc) => {
         let results: Guest[] = [];
         doc.forEach((d) => {
-          console.log(d.id, " ==> ", d.data());
           let g = new Guest(d.data() as Guest);
           results.push(g);
         });

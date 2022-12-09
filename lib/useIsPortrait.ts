@@ -4,7 +4,6 @@ export const useIsPortrait = () => {
   const [results, setResults] = useState<boolean>();
 
   useEffect(() => {
-    console.log("window size change");
     const query = "(orientation: portrait)";
     const media = window.matchMedia(query);
     if (media.matches !== results) {

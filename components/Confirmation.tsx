@@ -89,7 +89,6 @@ export const Confirmation = (props: Props) => {
           going: value ?? false,
         };
 
-        console.log("confirming....", data);
         await setDoc(ref, data);
         toast.success("Thank you for your response!");
       } catch (error) {

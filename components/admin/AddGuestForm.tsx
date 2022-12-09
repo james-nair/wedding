@@ -62,7 +62,6 @@ export const AddGuestForm = (props: Props) => {
         //check ref if url exists
         const ref = doc(firestore, `guests/${url}`);
         const snap = await getDoc(ref);
-        console.log("read firestore", snap.exists());
         setIsValid(!snap.exists());
         setLoading(false);
       } else {
@@ -74,14 +73,12 @@ export const AddGuestForm = (props: Props) => {
   );
 
   const submit = async (e: FormEvent) => {
-    console.log("submitting");
     e.preventDefault();
     e.stopPropagation();
 
     try {
       if (!!personNum && !!side && !!type && !!url) {
         //set guests to db
-        console.log("setting to db");
         const ref = doc(firestore, "guests", url);
         const data = {
           name,
@@ -95,7 +92,6 @@ export const AddGuestForm = (props: Props) => {
         };
         await setDoc(ref, data);
         toast.success("Guest added!");
-        console.log("setting completed");
         props.close();
       }
     } catch (error) {
