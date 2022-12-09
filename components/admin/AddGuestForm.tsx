@@ -171,7 +171,7 @@ export const AddGuestForm = (props: Props) => {
               labelId="type-lable"
               label="Which type?"
               value={type}
-              onChange={(e) => setType(e.target.value as InvitedBy)}
+              onChange={(e) => setType(e.target.value as Category)}
             >
               {category.map((item, i) => (
                 <MenuItem key={`cat_item_${i}`} value={item}>
