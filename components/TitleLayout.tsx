@@ -3,7 +3,6 @@ import { useConfig } from "../lib/useConfig";
 import { useIsPortrait } from "../lib/useIsPortrait";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import { BACKGROUND_COLOR } from "../styles/constant";
-import { Love_Light, Xanh_Mono } from "@next/font/google";
 
 // const font = Love_Light({
 //   weight: "400",

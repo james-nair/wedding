@@ -1,7 +1,5 @@
 import { styled, Typography } from "@mui/material";
 
-import { Alex_Brush, Elsie } from "@next/font/google";
-
 // export const CursiveFont = Alex_Brush({
 //   subsets: ["vietnamese", "latin"],
 //   weight: "400",
