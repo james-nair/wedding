@@ -28,7 +28,6 @@ import { DeleteGuestForm } from "./DeleteGuestForm";
 import { Category, Guest, InvitedBy } from "./types";
 
 type Props = {
-  label: string;
   guestList: Guest[];
 };
 
@@ -136,7 +135,6 @@ export const GuestTable = (props: Props) => {
 
   return (
     <div>
-      <h3>{props.label}</h3>
       <Button
         variant="contained"
         sx={{ marginBottom: "1rem" }}

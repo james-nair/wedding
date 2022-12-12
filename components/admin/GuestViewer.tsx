@@ -14,7 +14,7 @@ const TabPanel = ({
 }) => {
   return (
     <div hidden={index !== selectedValue}>
-      <GuestTable label={""} guestList={guestList} />
+      <GuestTable guestList={guestList} />
     </div>
   );
 };
