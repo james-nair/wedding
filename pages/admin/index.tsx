@@ -7,6 +7,7 @@ import { GuestViewer } from "../../components/admin/GuestViewer";
 import { Guest } from "../../components/admin/types";
 import { AuthWrapper } from "../../components/AuthWrapper";
 import { auth, firestore } from "../../lib/firebase";
+import { useMediaQuery } from "../../lib/useMediaQuery";
 import { useAuth } from "../../lib/UserAuth";
 
 interface ComponentProps {
@@ -35,8 +36,8 @@ type AdminPageProps = {};
 
 const AdminPage = (props: AdminPageProps) => {
   const { username, user } = useAuth();
-
   const [guests, setGuests] = useState<Guest[]>([]);
+  const isSmall = useMediaQuery("md");
 
   useEffect(() => {
     let unsub;
@@ -74,7 +75,7 @@ const AdminPage = (props: AdminPageProps) => {
                 marginLeft: "auto",
                 marginRight: "auto",
                 padding: "3rem 0",
-                maxWidth: "70%",
+                maxWidth: isSmall ? "90%" : "70%",
               }}
             >
               {/* <GuestTable label={"Guest List"} guestList={guests} /> */}

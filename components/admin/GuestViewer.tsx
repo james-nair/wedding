@@ -30,7 +30,8 @@ export const GuestViewer = (props: Props) => {
           value={value}
           onChange={(e, v) => setValue(v)}
           textColor="inherit"
-          variant="fullWidth"
+          variant="scrollable"
+          scrollButtons="auto"
         >
           <Tab label="All guest" />
           <Tab label="Bride's guests" />
@@ -38,7 +39,7 @@ export const GuestViewer = (props: Props) => {
           <Tab label="Both guests" />
         </Tabs>
       </AppBar>
-      <div>
+      <div style={{ marginTop: "2rem" }}>
         <TabPanel index={0} selectedValue={value} guestList={props.guests} />
         <TabPanel
           index={1}

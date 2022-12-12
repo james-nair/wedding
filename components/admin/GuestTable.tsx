@@ -70,7 +70,18 @@ const Table = (props: TableProps) => {
         <TableHead>
           <TableRow>
             {Object.keys(props.guestList[0]).map((field, i) => (
-              <TableCell key={`field_${field}_i_${i}`}>{field} </TableCell>
+              <TableCell
+                key={`field_${field}_i_${i}`}
+                sx={{
+                  ...(i === 0 && {
+                    position: "sticky",
+                    left: 0,
+                    backgroundColor: "white",
+                  }),
+                }}
+              >
+                {field}{" "}
+              </TableCell>
             ))}
             <TableCell /> {/** Extra cell for the edit button */}
             <TableCell>Link</TableCell>
@@ -82,7 +93,16 @@ const Table = (props: TableProps) => {
           {props.guestList.map((guest, i) => (
             <TableRow key={`guest_${guest.url}`} sx={{}}>
               {Object.keys(guest).map((key, i: number) => (
-                <TableCell key={`value_${key}_i_${i}`}>
+                <TableCell
+                  key={`value_${key}_i_${i}`}
+                  sx={{
+                    ...(i === 0 && {
+                      position: "sticky",
+                      left: 0,
+                      backgroundColor: "white",
+                    }),
+                  }}
+                >
                   {/* {guest[key as keyof Guest].toString()} */}
                   {transformValue(guest[key as keyof Guest])}
                 </TableCell>
