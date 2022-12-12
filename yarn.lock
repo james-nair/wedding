@@ -573,6 +573,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/alex-brush/-/alex-brush-4.5.9.tgz#5bf444235b9c153ee68c2d10d4597493d1cc0314"
   integrity sha512-fryXSMmlPn305qLcbnRttrXjHuw+GhyDGHj5aydcmQfpK4IoNyVSuP8bGRhWojO3zjGnIuHfib2CdN03pnJO7Q==
 
+"@fontsource/clear-sans@^4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/clear-sans/-/clear-sans-4.5.3.tgz#226abbb3c3b89c7ad679e57bc7ea0dc85b487f6f"
+  integrity sha512-092h3D/WVUPVyGPFxdAqr4KwFsAxzxB1o01YY3qQGA3vB9zATYiCsXWGKXiztDzggIgJmC4TdUq+gEVZPZuXuA==
+
 "@fontsource/elsie@^4.5.7":
   version "4.5.7"
   resolved "https://registry.yarnpkg.com/@fontsource/elsie/-/elsie-4.5.7.tgz#4327ce2884567f312afcb4d96219b6532c7c7fa4"

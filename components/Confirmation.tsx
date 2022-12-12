@@ -1,24 +1,22 @@
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import HeartIcon from "@mui/icons-material/Favorite";
 import {
   Button,
   FormControl,
-  FormControlLabel,
   Grid,
   OutlinedInput,
-  Radio,
-  RadioGroup,
   styled,
   Typography,
 } from "@mui/material";
-import { textAlign } from "@mui/system";
-import { doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { firestore } from "../lib/firebase";
 import { useMediaQuery } from "../lib/useMediaQuery";
-import { BACKGROUND_COLOR, Header, TitleLayout } from "../styles/constant";
+import { BACKGROUND_COLOR, TitleLayout } from "../styles/constant";
 import { Guest } from "./admin/types";
+import { MessageForm } from "./MessageForm";
 import { SelectButton } from "./SelectButton";
-
 interface ComponentProps {
   isPortrait?: boolean;
   isSmall?: boolean;
@@ -69,6 +67,8 @@ export const Confirmation = (props: Props) => {
   const [value, setValue] = useState<boolean>();
   const [num, setNum] = useState(0);
   const [selected, setSelected] = useState("");
+  const [message, setMessage] = useState<string>("");
+  const [submitted, setSubmitted] = useState(false);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -84,7 +84,18 @@ export const Confirmation = (props: Props) => {
         };
 
         await setDoc(ref, data);
+
+        if (message !== "") {
+          //set comments
+          const commentCol = collection(firestore, "comments");
+          await addDoc(commentCol, {
+            message: message,
+            guestId: props.guest.url,
+          });
+        }
+
         toast.success("Thank you for your response!");
+        setSubmitted(true);
       } catch (error) {
         console.log(error);
       }
@@ -180,71 +191,101 @@ export const Confirmation = (props: Props) => {
 
             {value === undefined ? (
               <></>
-            ) : value ? (
-              <Grid item xs={12}>
-                <Subtitle>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      height: "3rem",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Awesome! &#127881; How many people are coming?{" "}
-                    <FormControl
+            ) : (
+              <>
+                {value ? (
+                  <Grid item xs={12}>
+                    <Subtitle>
+                      <Typography
+                        variant="h6"
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "3rem",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Awesome! &#127881; How many people are coming?{" "}
+                        <FormControl
+                          sx={{
+                            width: "5rem",
+                            marginLeft: "0.5rem",
+                          }}
+                        >
+                          <OutlinedInput
+                            placeholder="0"
+                            type="number"
+                            inputProps={{ min: 1, max: 6 }}
+                            onChange={(e) =>
+                              setNum(parseFloat(e.currentTarget.value))
+                            }
+                            color="primary"
+                            sx={{ fontWeight: "bold" }}
+                            // sx={{
+                            //   "& .MuiOutlinedInput-root": {
+                            //     "& fieldset": {
+                            //       borderColor: "red",
+                            //     },
+                            //     "&:hover fieldset": {
+                            //       borderColor: "yellow",
+                            //     },
+                            //     "&.Mui-focused fieldset": {
+                            //       borderColor: "green",
+                            //     },
+                            //   },
+                            // }}
+                          />
+                        </FormControl>
+                      </Typography>
+                    </Subtitle>
+                  </Grid>
+                ) : (
+                  <Grid item xs={12}>
+                    <Subtitle>
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "3rem",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Aw &#128549; that&apos;s okay. Do let us know if you
+                        change your mind &#128523;
+                      </Typography>
+                    </Subtitle>
+                  </Grid>
+                )}
+                <Grid item xs={12}>
+                  {submitted ? (
+                    <Typography
                       sx={{
-                        width: "5rem",
-                        marginLeft: "0.5rem",
+                        fontWeight: "bold",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
-                      <OutlinedInput
-                        placeholder="0"
-                        type="number"
-                        inputProps={{ min: 1, max: 6 }}
-                        onChange={(e) =>
-                          setNum(parseFloat(e.currentTarget.value))
-                        }
-                        color="primary"
-                        sx={{ fontWeight: "bold" }}
-                        // sx={{
-                        //   "& .MuiOutlinedInput-root": {
-                        //     "& fieldset": {
-                        //       borderColor: "red",
-                        //     },
-                        //     "&:hover fieldset": {
-                        //       borderColor: "yellow",
-                        //     },
-                        //     "&.Mui-focused fieldset": {
-                        //       borderColor: "green",
-                        //     },
-                        //   },
-                        // }}
+                      <CheckCircleIcon
+                        color="success"
+                        fontSize="large"
+                        sx={{ mr: "1rem" }}
                       />
-                    </FormControl>
-                  </Typography>
-                </Subtitle>
-              </Grid>
-            ) : (
-              <Grid item xs={12}>
-                <Subtitle>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      height: "3rem",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Aw &#128549; that&apos;s okay. Do let us know if you change
-                    your mind &#128523;
-                  </Typography>
-                </Subtitle>
-              </Grid>
+                      Your message has been recorded! Thank you so much!
+                      <HeartIcon
+                        color="error"
+                        fontSize="large"
+                        sx={{ ml: "1rem" }}
+                      />
+                    </Typography>
+                  ) : (
+                    <MessageForm value={message} handleChange={setMessage} />
+                  )}
+                </Grid>
+              </>
             )}
 
             <Grid item xs={12}>
