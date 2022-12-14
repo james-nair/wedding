@@ -5,7 +5,7 @@ import { useIsPortrait } from "../lib/useIsPortrait";
 import { useMediaQuery } from "../lib/useMediaQuery";
 import useOnScreen from "../lib/useOnScreen";
 import { BACKGROUND_COLOR, FADED_BACKGROUND } from "../styles/constant";
-import BackgroundImage from "../assets/BackgroundMulti.jpg";
+import BackgroundImage from "../assets/resized/BackgroundMulti.jpg";
 interface ComponentProps {
   isPortrait?: boolean;
   isSmall?: boolean;

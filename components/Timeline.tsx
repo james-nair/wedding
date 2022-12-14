@@ -10,7 +10,7 @@ import { DoubleHappyIcon } from "./icons/DoubleHappy";
 import { RingsIcon } from "./icons/Rings";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import { useMediaQuery } from "../lib/useMediaQuery";
-import BackgroundImage from "../assets/BackgroundMulti.jpg";
+import BackgroundImage from "../assets/resized/BackgroundMulti.jpg";
 
 interface ComponentProps {
   isPortrait?: boolean;

@@ -11,12 +11,12 @@ import {
   Header,
 } from "../styles/constant";
 import { ImageDisplay, QuiltedImageList } from "./QuiltedImageList";
-import Image1 from "../assets/PAVAnh_Prewedding_C1_4V0A9336-L.jpg";
-import Image2 from "../assets/PAVAnh_Prewedding_C1_4V0A9387-L.jpg";
-import Image3 from "../assets/PAVAnh_Prewedding_C1_4V0A9292-L.jpg";
-import Image4 from "../assets/PAVAnh_Prewedding_C1_4V0A9278-L.jpg";
-import Image5 from "../assets/PAVAnh_Prewedding_C1_4V0A9332-L.jpg";
-import Image6 from "../assets/PAVAnh_Prewedding_C1_4V0A9472.jpg";
+import Image1 from "../assets/resized/PAVAnh_Prewedding_C1_4V0A9336-L.jpg";
+import Image2 from "../assets/resized/PAVAnh_Prewedding_C1_4V0A9387-L.jpg";
+import Image3 from "../assets/resized/PAVAnh_Prewedding_C1_4V0A9292-L.jpg";
+import Image4 from "../assets/resized/PAVAnh_Prewedding_C1_4V0A9278-L.jpg";
+import Image5 from "../assets/resized/PAVAnh_Prewedding_C1_4V0A9332-L.jpg";
+import Image6 from "../assets/resized/PAVAnh_Prewedding_C1_4V0A9472.jpg";
 interface ComponentProps {
   isPortrait?: boolean;
 }
@@ -59,8 +59,6 @@ export const Gallery = () => {
 };
 
 const ItemData = (): ImageDisplay[] => {
-  const images = MyConfig.galleryImages;
-
   return [
     {
       src: Image1.src,

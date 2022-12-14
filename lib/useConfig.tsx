@@ -1,23 +1,15 @@
 import { createContext, ReactNode, useContext } from "react";
 import { StaticImageData } from "next/image";
-import TitleImage from "../assets/PAVAnh_Prewedding_C2_IMG_1863-L.jpg";
-import Image1 from "../assets/PAVAnh_Prewedding_C1_4V0A9076-L.jpg";
-import Image2 from "../assets/PAVAnh_Prewedding_C1_4V0A9117-L.jpg";
-import Image3 from "../assets/PAVAnh_Prewedding_C1_4V0A9107.jpg";
-import Image4 from "../assets/PAVAnh_Prewedding_C1_4V0A9128.jpg";
-import Image5 from "../assets/PAVAnh_Prewedding_C1_4V0A9332-L.jpg";
-import Image6 from "../assets/PAVAnh_Prewedding_C1_4V0A9021.jpg";
-import Image7 from "../assets/PAVAnh_Prewedding_C1_4V0A9472.jpg";
-import Image8 from "../assets/TitleImage.jpg";
-import Bride from "../assets/PA_Avatar.jpg";
-import Groom from "../assets/Nair_Avatar.jpg";
+import TitleImage from "../assets/resized/PAVAnh_Prewedding_C2_IMG_1863-L.jpg";
+
+import Bride from "../assets/resized/PA_Avatar.jpg";
+import Groom from "../assets/resized/Nair_Avatar.jpg";
 export type Config = {
   weddingDate: Date;
   location: string;
   groom: Person;
   bride: Person;
   titleImage: StaticImageData;
-  galleryImages: StaticImageData[];
   church: Ceremony;
   traditional: Ceremony;
   reception: Ceremony;
@@ -74,16 +66,7 @@ export const MyConfig: Config = {
     },
   },
   titleImage: TitleImage,
-  galleryImages: [
-    Image1,
-    Image2,
-    Image3,
-    Image4,
-    Image5,
-    Image6,
-    Image7,
-    Image8,
-  ],
+
   church: {
     location: "Nhà thời Giáo Xứ Tân Phú",
     date: new Date(2023, 0, 6, 16),
